@@ -9,7 +9,7 @@ CSCI E14A - Building Interactive Web Applications for Data Analysis
 
 **Zoom Link**: <<zoom link>>
 
-**Github Repo**: <<https://github.com/Harvard-DCE-BIWADA/S14A2021-final- super-cool-team-repo>>
+**Github Repo**: https://github.com/Harvard-DCE-BIWADA/S14A2022-final-nsxy
 
 **Website Design Template**: https://html5up.net/big-picture
 
