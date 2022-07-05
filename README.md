@@ -21,9 +21,11 @@ Shaoyi Li - shl183@g.harvard.edu
 
 ## Project Basics
 
+Background about American Sign Language (ASL): https://en.wikipedia.org/wiki/American_Sign_Language
+
 The purpose of this project is to help deaf & mute people to communicate using ASL with who doesn't know ASL. While we can ask deaf & mute people to learn typing but it'd be greatly useful if they don't touch keyboards in the middle of a presentation going through slides or annotating on a whiteboard. 
 
-By the end of the semester we'll aim to be able to intepret English alphabet as this is a 7-week semester.
+By the end of the semester we'll aim to be able to intepret English alphabet (instead of the whole ASL vocabulary) as this is a 7-week semester.
 
 We'll provide web interface for users to upload or connect with the PC's camera. For each of the frames in the video, we intepret the American Sign Language gesture into an English letter. The history of the English letters of the video will be shown in the web page as the scripts. Users will need to have their own login to use the web interface and scripts in the past will be save for each account. We can also show the user the words with top frequecy. It will look something like in the below link but we'll try to make it more user interactive: https://public.roboflow.com/object-detection/american-sign-language-letters
 
