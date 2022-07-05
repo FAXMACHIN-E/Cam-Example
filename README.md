@@ -1,31 +1,34 @@
-# S14A2022-final-nsxy
 CSCI E14A - Building Interactive Web Applications for Data Analysis
 
-# Super Cool Awesome Project
+# Image based ASL Interpretor Web Application
 
 ## Project Plan
 
-**Meeting Times**: Tues, Thursdays 3:30 - 4:30p (1 hour)
+**Meeting Times**: TBD
 
-**Zoom Link**: <<zoom link>>
+**Zoom Link**: provided on-demand
 
-**Github Repo**: https://github.com/Harvard-DCE-BIWADA/S14A2022-final-nsxy
+**Github Repo**: <<https://github.com/Harvard-DCE-BIWADA/S14A2022-final-nsxy>>
 
-**Website Design Template**: https://html5up.net/big-picture
+**Website Design Template**: 
 
-**Website Location**: https://link-to-heroku-app
+**Website Location**: 
 
 ### Team Members
 
-Cool Dude - alsome1@g.harvard.edu
-Sam Cooke - cookes@monster.net
-Lady Gaga - gaga@lady.jams
+Shaoyi Li - shl183@g.harvard.edu
+
 
 ## Project Basics
 
-The purpose of this project is XXX. It will be distributed as XXX. It will be implemented in XXX.
+The purpose of this project is to help deaf & mute people to communicate using ASL with who doesn't know ASL. While we can ask deaf & mute people to learn typing but it'd be greatly useful if they don't touch keyboards in the middle of a presentation going through slides or annotating on a whiteboard. 
 
-General description of how the project will work
+By the end of the semester we'll aim to be able to intepret English alphabet as this is a 7-week semester.
+
+We'll provide web interface for users to upload or connect with the PC's camera. For each of the frames in the video, we intepret the American Sign Language gesture into an English letter. The history of the English letters of the video will be shown in the web page as the scripts. Users will need to have their own login to use the web interface and scripts in the past will be save for each account. We can also show the user the words with top frequecy. It will look something like in the below link but we'll try to make it more user interactive: https://public.roboflow.com/object-detection/american-sign-language-letters
+
+We plan to use the database to score information per account and use flask framework for the web interface.
+
 
 ## Project Structure
 
@@ -42,33 +45,30 @@ The main components of the app are:
 1. **Base** - This module contains the skeleton that the entire framework rests on. It is responsible
    for checking for compatibility, as well as loading and securing the various sub-modules.
 
-2. **Component X** - This component does X. It uses Google Tensorflow to do ...
+2. **Component Model** - This component uses mediapipe and our own ML models to translate images to English letters
 
-3. **Component Y** - This component does Y. It uses Z to add W features.
+3. **Component Frontend** - This component interacts with the users
+
+4. **Component Database** - This component stores information per user account
 
 ## Project Timeline
 
 # Milestone 1 Tasks
+Xiaokang Zhang
 
-​
-Cool Dude
+- Github repository setup **COMPLETE**
 
-1. Github repository **COMPLETE**
-   ​
-   Sam Cooke
-1. Process book **COMPLETE**
-1. Project Plan **COMPLETE**
-   ​
-   All:
-1. Choose data set **COMPLETE**
-1. Cite all work **IN PROCESS**
-   ​
+
+Shaoyi Li
+
+- README.md; Project description **COMPLETE**
+- Obtain dataset **COMPLETE**
+> Available from https://app.roboflow.com/ds/h6WIr3ZefA?key=IEDTxWuwkA
+- Make sure mediapipe works with the dataset **COMPLETE**
+
 
 # Milestone X Tasks
 
-​
-Cool Dude
-​
 
 1. Task 1 **COMPLETE**
 2. Task 2 **IN PROCESS**
@@ -90,9 +90,5 @@ Cool Dude
 # References & Citations
 
 ​
-The Stanford GraphBase: A Platform for Combinatorial Computing by Donald E. Knuth (New York: ACM Press, 1994), viii+576pp.
-https://www-cs-faculty.stanford.edu/~knuth/sgb.html
-​
-Whitesides, Sue H., and Symposium on Graph Drawing. Graph Drawing : 6th International Symposium, GD '98, Montréal, Canada, August 13-15, 1998 : Proceedings. Springer, 1998.
-​
-Di Battista, Giuseppe. Graph Drawing : 5th International Symposium, GD'97, Rome, Italy, September 18-20, 1997 : Proceedings. Springer Verlag, 1998.
+Lee, D. (2020, October 15). Using computer vision in helping the deaf and hard of hearing communities with yolov5. Medium. Retrieved July 4, 2022, from https://daviddaeshinlee.medium.com/using-computer-vision-in-helping-the-deaf-and-hard-of-hearing-communities-with-yolov5-7d764c2eb614 
+
