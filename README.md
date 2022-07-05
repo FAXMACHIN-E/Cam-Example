@@ -4,7 +4,7 @@ CSCI E14A - Building Interactive Web Applications for Data Analysis
 
 ## Project Plan
 
-**Meeting Times**: TBD
+**Meeting Times**: Wednesday 8:00-9:00pm (subject to change)
 
 **Zoom Link**: provided on-demand
 
@@ -16,7 +16,7 @@ CSCI E14A - Building Interactive Web Applications for Data Analysis
 
 ### Team Members
 
-Shaoyi Li - shl183@g.harvard.edu
+Shaoyi Li - shl183@g.harvard.edu, Xiaokang(Ken) Zhang - xiz963@g.harvard.edu
 
 
 ## Project Basics
