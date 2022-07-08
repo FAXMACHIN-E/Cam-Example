@@ -18,6 +18,7 @@ CSCI E14A - Building Interactive Web Applications for Data Analysis
 
 Shaoyi Li - shl183@g.harvard.edu, Xiaokang(Ken) Zhang - xiz963@g.harvard.edu
 Yan Zhang - yaz336@g.harvard.edu
+Nikita Nair - nin500@g.harvard.edu
 
 ## Project Basics
 
