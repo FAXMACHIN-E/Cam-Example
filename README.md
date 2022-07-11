@@ -74,10 +74,13 @@ Shaoyi Li
 Xiaokang Zhang
 - Update README per discussion **COMPLETE**
 - Readjust team meeting time to accommodate all members **COMPLETE**
+
 Nikita 
 - Build a basic website and put it on Heroku **IN PROCESS**
+
 Shaoyi Li
 - Create a model (image as input) and output letter **IN PROCESS**
+
 Yan Zhang
 - Investigate 'how to connect webcam via web UI and pull frames from the stream/uploaded videoes'
  **IN PROCESS**
