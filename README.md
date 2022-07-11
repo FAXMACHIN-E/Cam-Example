@@ -75,7 +75,7 @@ Xiaokang Zhang
 - Update README per discussion **COMPLETE**
 - Readjust team meeting time to accommodate all members **COMPLETE**
 
-Nikita 
+Nikita Nair  
 - Build a basic website and put it on Heroku **IN PROCESS**
 
 Shaoyi Li
