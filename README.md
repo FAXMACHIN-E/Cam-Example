@@ -33,7 +33,7 @@ We'll provide web interface for users to upload or connect with the PC's camera.
 We plan to use the database to store information per account and use flask framework for the web interface.
 
 
-## Project Structure
+## Project Structure (to be updated as evolving)
 
 /app/ - The folder containing the app.
 /app/app.py - The main app entry point
@@ -45,33 +45,35 @@ We plan to use the database to store information per account and use flask frame
 
 The main components of the app are:
 
-1. **Base** - This module contains the skeleton that the entire framework rests on. It is responsible
-   for checking for compatibility, as well as loading and securing the various sub-modules.
+1. **Input** - This component is about module to handle input - image/video uploaded by users, or content from web camera stream directly. It will also check compatibility - whether the input is the right type within the proper size range. 
 
-2. **Component Model** - This component uses mediapipe and our own ML models to translate images to English letters
+2. **Processing** - This module contains tailored machine learning model to process reveived input and generate output, the processing time should be reasonable to achieve desired user experience. 
 
-3. **Component Frontend** - This component interacts with the users
+3. **Output** - This component is to show the output - letters in scripts (or edited video, to be investigated and confirmed) in desired format. 
 
-4. **Component Database** - This component stores information per user account
+4. **Database**(optional) - This component stores information per user account, user ID & password, logging, uploaded files, etc. 
+
+5. **Security** (to be investigated and confirmed) - This part contains user registration, authentication, etc. E.g., users need to provide valid email addresses for registration, and validation is needed if users want to upload files in the website.
+
+6. **Visualization** (to be confirmed later)- This part is to describe models in a visual way, and illustrate key user activities in the webside (frequency, etc.)  
+
 
 ## Project Timeline
 
 # Milestone 1 Tasks
 Xiaokang Zhang
-
 - Github repository setup **COMPLETE**
 
-
 Shaoyi Li
-
 - README.md; Project description **COMPLETE**
 - Obtain dataset **COMPLETE**
 > Available from https://app.roboflow.com/ds/h6WIr3ZefA?key=IEDTxWuwkA
 - Make sure mediapipe works with the dataset **COMPLETE**
 
-
-# Milestone X Tasks
-
+# Milestone 2 Tasks
+Xiaokang Zhang
+- Update README per discussion **COMPLETE**
+- Readjust team meeting time to accommodate all members **COMPLETE**
 
 1. Task 1 **COMPLETE**
 2. Task 2 **IN PROCESS**
