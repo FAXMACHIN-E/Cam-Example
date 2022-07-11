@@ -74,6 +74,8 @@ Shaoyi Li
 Xiaokang Zhang
 - Update README per discussion **COMPLETE**
 - Readjust team meeting time to accommodate all members **COMPLETE**
+- Use issue features to track and assign tasks **COMPLETE**
+
 
 Nikita Nair  
 - Build a basic website and put it on Heroku **IN PROCESS**
@@ -87,7 +89,6 @@ Yan Zhang
  
 # Actions in the future 
 - Add 'about' page to the website, e.g., how to help deal/mute people
-- Use issue features to track and assign tasks
 
 # References & Citations
 
