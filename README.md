@@ -74,23 +74,14 @@ Shaoyi Li
 Xiaokang Zhang
 - Update README per discussion **COMPLETE**
 - Readjust team meeting time to accommodate all members **COMPLETE**
-
-1. Task 1 **COMPLETE**
-2. Task 2 **IN PROCESS**
-3. Task 3 **IN PROCESS**
-   ​
-   Lady Gaga
-   ​
-4. Task 1 **COMPLETE**
-5. Task 2 **IN PROCESS**
-6. Task 3 **IN PROCESS**
-   ​
-   Sam Cooke
-   ​
-7. Task 1 **COMPLETE**
-8. Task 2 **IN PROCESS**
-9. Task 3 **IN PROCESS**
-   ​
+Nikita 
+- Build a basic website and put it on Heroku **IN PROCESS**
+Shaoyi Li
+- Create a model (image as input) and output letter **IN PROCESS**
+Yan Zhang
+- Investigate 'how to connect webcam via web UI and pull frames from the stream/uploaded videoes'
+ **IN PROCESS**
+ 
 
 # References & Citations
 
