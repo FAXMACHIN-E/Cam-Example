@@ -4,15 +4,15 @@ CSCI E14A - Building Interactive Web Applications for Data Analysis
 
 ## Project Plan
 
-**Meeting Times**: Wednesday 8:00-9:00pm (subject to change)
+**Meeting Times**: Friday 4:00-5:00pm 
 
-**Zoom Link**: provided on-demand
+**Zoom Link**: https://harvard.zoom.us/j/98977983130?pwd=Z0FnZWc0UW5kRndQN3lFTm40WGF1Zz09
 
 **Github Repo**: <<https://github.com/Harvard-DCE-BIWADA/S14A2022-final-nsxy>>
 
-**Website Design Template**: 
+**Website Design Template**: Not required for our project
 
-**Website Location**: 
+**Website Location**: Herolu link (to be updated)
 
 ### Team Members
 
