@@ -85,8 +85,8 @@ Nikita Nair
 - Build a basic website and put it on Heroku **IN PROCESS**
 
 Shaoyi Li
-- Create a model (image as input) and output letter **Complete**. Test accuracy: 81%, okay but not great. Check **Processing** section above for the Colab link.
-- Push model related info to a Git folder: ml_model **Complete**
+- Create a model (image as input) and output letter **COMPLETE**. Test accuracy: 81%, okay but not great. Check **Processing** section above for the Colab link.
+- Push model related info to a Git folder: ml_model **COMPLETE**
 
 Yan Zhang
 - Investigate 'how to connect webcam via web UI and pull frames from the stream/uploaded videoes'
