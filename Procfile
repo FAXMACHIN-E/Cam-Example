@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath S14A2022-final-nsxy app:app
