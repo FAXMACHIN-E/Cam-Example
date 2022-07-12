@@ -91,6 +91,7 @@ Shaoyi Li
 
 Yan Zhang
 - Investigate 'how to connect webcam via web UI and pull frames from the stream/uploaded videoes'
+- https://pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/
  **IN PROCESS**
  
 # Actions in the future 
