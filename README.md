@@ -82,7 +82,8 @@ Xiaokang Zhang
 
 
 Nikita Nair  
-- Build a basic website and put it on Heroku **IN PROCESS**
+- Build a basic website and put it on Heroku **COMPLETE**
+- https://arcane-reef-02788.herokuapp.com/
 
 Shaoyi Li
 - Create a model (image as input) and output letter **COMPLETE**. Test accuracy: 81%, okay but not great. Check **Processing** section above for the Colab link.
