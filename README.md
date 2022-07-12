@@ -73,6 +73,7 @@ Shaoyi Li
 - Obtain dataset **COMPLETE**
 > Available from https://app.roboflow.com/ds/h6WIr3ZefA?key=IEDTxWuwkA
 - Make sure mediapipe works with the dataset **COMPLETE**
+> Mediapipe Hands example: https://google.github.io/mediapipe/solutions/hands.html#python-solution-api
 
 # Milestone 2 Tasks
 Xiaokang Zhang
