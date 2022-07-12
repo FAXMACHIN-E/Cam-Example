@@ -47,7 +47,7 @@ The main components of the app are:
 
 1. **Input** - This component is about module to handle input - image/video uploaded by users, or content from web camera stream directly. It will also check compatibility - whether the input is the right type within the proper size range. 
 
-2. **Processing** - This module contains tailored machine learning model to process reveived input and generate output, the processing time should be reasonable to achieve desired user experience. 
+2. **Processing** - This module contains tailored machine learning model to process reveived input and generate output, the processing time should be reasonable to achieve desired user experience. Colab notebook for model training: https://colab.research.google.com/drive/1Tuok_HFhSaD7UQCsoKiHDVf9lvWsp6kU?usp=sharing
 
 3. **Output** - This component is to show the output - letters in scripts (or edited video, to be investigated and confirmed) in desired format. 
 
@@ -81,7 +81,7 @@ Nikita Nair
 - Build a basic website and put it on Heroku **IN PROCESS**
 
 Shaoyi Li
-- Create a model (image as input) and output letter **IN PROCESS**. Test accuracy: 81%, okay but not great
+- Create a model (image as input) and output letter **Complete**. Test accuracy: 81%, okay but not great. Check **Processing** section above for the Colab link.
 
 Yan Zhang
 - Investigate 'how to connect webcam via web UI and pull frames from the stream/uploaded videoes'
