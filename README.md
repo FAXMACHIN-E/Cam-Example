@@ -12,7 +12,7 @@ CSCI E14A - Building Interactive Web Applications for Data Analysis
 
 **Website Design Template**: Not required for our project
 
-**Website Location**: Herolu link (to be updated)
+**Website Location**: https://arcane-reef-02788.herokuapp.com/
 
 ### Team Members
 
