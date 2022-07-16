@@ -24,6 +24,10 @@ time.sleep(2.0)
 def index():
     
     return render_template('index.html')
+@app.route('/asl')	
+def asl():
+    
+    return render_template('asl.html')
         
         
 def detect_motion(frameCount):
