@@ -1,6 +1,5 @@
-# https://intense-headland-75738.herokuapp.com/
+
 # import the necessary packages
-# import SingleMotionDetector
 from flask import Flask, render_template
 import gunicorn
 from imutils.video import VideoStream
