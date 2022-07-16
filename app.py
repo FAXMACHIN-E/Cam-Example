@@ -28,7 +28,11 @@ def index():
 def asl():
     
     return render_template('asl.html')
-        
+
+@app.route('/login')	
+def login():
+    
+    return render_template('login.html')        
         
 def detect_motion(frameCount):
 	# grab global references to the video stream, output frame, and
