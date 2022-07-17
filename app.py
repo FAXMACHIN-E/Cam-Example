@@ -9,14 +9,22 @@ from flask import Response
 # import datetime
 # import imutils
 # import time
-# import cv2
+import cv2
 import os
+import joblib
 from werkzeug.utils import secure_filename
+
+from models.predict_img import predict_image_letters
+
+
+
 
 # outputFrame = None
 # lock = threading.Lock()
 
 app = Flask(__name__)
+
+model_xtree = joblib.load(os.path.join(app.root_path, 'models', 'xtree.pkl'))
 
 # vs = VideoStream(src=0).start()
 # time.sleep(2.0)
@@ -44,7 +52,14 @@ def upload_image():
         uploaded_img.save(os.path.join(app.config['UPLOAD_FOLDER'],img_filename))
         session['uploaded_img_file_path'] = os.path.join(app.config['UPLOAD_FOLDER'], img_filename)
         img_file_path = session.get('uploaded_img_file_path',None)
-        return render_template('image_interpretation2.html',img_file_path=img_file_path)
+        img = cv2.imread(img_file_path)
+        pred = predict_image_letters([img], model_xtree)[0]
+        print(pred)
+
+        return render_template(
+            'image_interpretation2.html',img_file_path=img_file_path,
+            pred=f'Letter: {pred[0]} (prob: {pred[1] * 100:.1f}%)'
+        )
 
 
 @app.route('/asl')	
