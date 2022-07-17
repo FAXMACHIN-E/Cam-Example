@@ -1,9 +1,25 @@
-<html>
-  <head>
-    <title>Video Camera</title>
-  </head>
-  <body>
-    <h1>Video Camera</h1>
-    <img src="{{ url_for('video_feed') }}">
-  </body>
-</html>
+{% extends "layout.html" %} 
+
+{% block styles %} 
+{% endblock %} 
+
+{% block scripts %}
+<script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+<script defer type="module" src="{{ url_for('static', filename='js/main.js') }}"></script> 
+{% endblock %} 
+
+{% block content %}  
+<head>
+  <title>Video Camera</title>
+</head>
+<body>
+  <h1>Video Camera</h1>
+  <img src="{{ url_for('video_feed') }}">
+</body>
+<div class="slide">
+    <div id="vis1" class="vis"></div>
+    <!--div id="vis2" class="vis"></div>
+    <div id="vis3" class="vis"></div-->
+</div>
+
+{% endblock %}
