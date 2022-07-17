@@ -56,14 +56,15 @@ def upload_image():
         pred = predict_image_letters([img], model_xtree)[0]
         letter, prob = pred
 
-        if letter is None:
-            letter = (
-                '<span style="font-size: 18pt;color:grey">'
-                'No ASL Detected</span>'
-            )
+        pred_str = (
+            '<span style="font-size: 18pt;color:grey">'
+            'No ASL Detected</span>'
+        ) if letter is None else (
+            f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+        )
         return render_template(
-            'image_interpretation2.html',img_file_path=img_file_path,
-            pred=f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+            'image_interpretation2.html',
+            img_file_path=img_file_path, pred=pred_str
         )
 
 
