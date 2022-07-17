@@ -11,8 +11,22 @@
 {% block content %} 
 <header>
     <div class="container"> 
-        <h1>Image based ASL Interpretor Web Application </h1>
+        <h1>1. Please select an image to upload </h1>
+        <form action="/">
+          <label for="myfile">Select a file:</label>
+          <input type="file" id="myfile" name="myfile"><br><br>
+          <input type="submit" value="Upload">
+        </form>
         <br>
+        <h1>2. Uploaded image </h1>
+        <br>
+        <p> -- Placeholder showing image -- </p>
+        <br>
+        <h1>3. Interpreted result</h1>
+         <p> -- Placeholder showing result -- </p>
+        <br>
+
+
 
     </div>
 </header>
