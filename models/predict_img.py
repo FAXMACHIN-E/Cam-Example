@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import pandas as pd
 
 
 def predict_image_letters(images, model, cvt_color=True, static_image_mode=True, 
