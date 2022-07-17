@@ -49,14 +49,12 @@ def upload_image():
     if request.method == "POST":
         uploaded_img = request.files['myfile']
         img_filename = secure_filename(uploaded_img.filename)
-        if not os.path.exists(img_filename):
+        
+        if len(img_filename) == 0:
             return render_template(
                 'image_interpretation2.html',
-                img_file_path='', 
-                pred=(
-                    '<span style="color:red">File not found: '
-                    f'"{img_filename}"</span>'
-                )
+                img_file_path='""', 
+                pred='<span style="color:red">No file uploaded</span>'
             )
 
         local_img_filename = 'asl.jpg'
@@ -65,6 +63,7 @@ def upload_image():
             app.config['UPLOAD_FOLDER'], local_img_filename
         )
         img_file_path = session.get('uploaded_img_file_path', None)
+        
         img = cv2.imread(img_file_path)
         pred = predict_image_letters([img], model_xtree)[0]
         letter, prob = pred
