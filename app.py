@@ -1,15 +1,17 @@
 
 # import the necessary packages
-from flask import Flask, render_template
+from flask import Flask, render_template, request,session
 import gunicorn
 # from imutils.video import VideoStream
 from flask import Response
 # import threading
-import argparse
-import datetime
+# import argparse
+# import datetime
 # import imutils
-import time
+# import time
 # import cv2
+import os
+from werkzeug.utils import secure_filename
 
 # outputFrame = None
 # lock = threading.Lock()
@@ -24,10 +26,26 @@ def index():
     
     return render_template('index.html')
 
+# for image upload and storage
 
+upload_folder = os.path.join('static','uploads')
+allowed_extensions = {'jpg','jpeg','gif','png'}
+app.config['UPLOAD_FOLDER'] = upload_folder
+app.secret_key = 'finalprojectsecretkey'
 @app.route('/image_interpretation')
 def image_interpretation():
     return render_template('image_interpretation.html')
+
+@app.route('/image_interpretation',methods=('POST','GET'))
+def upload_image():
+    if request.method == "POST":
+        uploaded_img = request.files['myfile']
+        img_filename = secure_filename(uploaded_img.filename)
+        uploaded_img.save(os.path.join(app.config['UPLOAD_FOLDER'],img_filename))
+        session['uploaded_img_file_path'] = os.path.join(app.config['UPLOAD_FOLDER'], img_filename)
+        img_file_path = session.get('uploaded_img_file_path',None)
+        return render_template('image_interpretation2.html',img_file_path=img_file_path)
+
 
 @app.route('/asl')	
 def asl():
