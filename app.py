@@ -23,6 +23,12 @@ app = Flask(__name__)
 def index():
     
     return render_template('index.html')
+
+
+@app.route('/image_interpretation')
+def image_interpretation():
+    return render_template('image_interpretation.html')
+
 @app.route('/asl')	
 def asl():
     
