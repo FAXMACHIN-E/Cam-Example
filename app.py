@@ -54,10 +54,16 @@ def upload_image():
         img_file_path = session.get('uploaded_img_file_path',None)
         img = cv2.imread(img_file_path)
         pred = predict_image_letters([img], model_xtree)[0]
+        letter, prob = pred
 
+        if letter is None:
+            letter = (
+                '<span style="font-size: 18pt;color:grey">'
+                'No ASL Detected</span>'
+            )
         return render_template(
             'image_interpretation2.html',img_file_path=img_file_path,
-            pred=f'Letter: {pred[0]} (prob: {pred[1] * 100:.1f}%)'
+            pred=f'Letter: {letter} (prob: {prob * 100:.1f}%)'
         )
 
 

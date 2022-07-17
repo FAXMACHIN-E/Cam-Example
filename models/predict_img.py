@@ -21,7 +21,7 @@ def predict_image_letters(images, model, cvt_color=True, static_image_mode=True,
     results = [
         (
             chr(ord('A') + label) 
-            if label is not None else 'No Hand Detected', 
+            if label is not None else None, 
             p
         ) for label, p in model_results
     ]
