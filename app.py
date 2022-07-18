@@ -81,10 +81,10 @@ def upload_image():
         )
 
 
-@app.route('/asl')	
-def asl():
+@app.route('/video')	
+def video():
     
-    return render_template('asl.html')
+    return render_template('video.html')
 
 @app.route('/login')	
 def login():
