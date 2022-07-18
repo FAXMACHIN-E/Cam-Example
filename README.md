@@ -10,9 +10,11 @@ CSCI E14A - Building Interactive Web Applications for Data Analysis
 
 **Github Repo**: <<https://github.com/Harvard-DCE-BIWADA/S14A2022-final-nsxy>>
 
-**Website Design Template**: Not required for our project
+**Heroku Repo**: <<https://git.heroku.com/cryptic-ridge-03408.git>>
 
-**Website Location**: https://arcane-reef-02788.herokuapp.com/
+**Website Design Template**: Bootstrap 5
+
+**Website Location**: https://cryptic-ridge-03408.herokuapp.com/
 
 ### Team Members
 
