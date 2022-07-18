@@ -119,7 +119,10 @@ Shaoyi Li
 Yan Zhang
 - Heroku app setup **COMPLETE**
 
-# Milestone 4 Tasks -- needs discussion
+# Milestone 4 Tasks
+- get video working # Shaoyi and Yan
+- login/database/security # Xiaokang and Nikita
+- investigate how D3 can fit into our project #everyone
  
 # Actions in the future 
 - Add 'about' page to the website, e.g., how to help deal/mute people
