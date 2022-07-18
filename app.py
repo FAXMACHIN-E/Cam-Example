@@ -40,6 +40,7 @@ upload_folder = os.path.join('static','uploads')
 allowed_extensions = {'jpg','jpeg','gif','png'}
 app.config['UPLOAD_FOLDER'] = upload_folder
 app.secret_key = 'finalprojectsecretkey'
+
 @app.route('/image_interpretation')
 def image_interpretation():
     return render_template('image_interpretation.html')
