@@ -102,6 +102,24 @@ Yan Zhang
 - https://pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/
  **IN PROCESS**
  
+ 
+ # Milestone 3 Tasks
+Xiaokang Zhang
+
+Nikita Nair  
+
+Shaoyi Li
+- Add a models folder with .py and .pkl so that the app can predict a given image **COMPLETE**
+- Make intepretation2.html and app.py to predict ASL letters from images **COMPLETE**
+- Make intepretation and intepretation2.html handle corner cases more gracefully. **COMPLETE**
+- Heroku app setup -- fix the installation issues and grant access to the team **COMPLETE**
+- Polish index.html **COMPLETE**
+
+Yan Zhang
+- Heroku app setup **COMPLETE**
+
+# Milestone 4 Tasks -- needs discussion
+ 
 # Actions in the future 
 - Add 'about' page to the website, e.g., how to help deal/mute people
 
