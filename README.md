@@ -62,6 +62,11 @@ The main components of the app are:
 6. **Visualization** (to be confirmed later)- This part is to describe models in a visual way, and illustrate key user activities in the webside (frequency, etc.)  
 
 
+## Key Packages
+- **sklearn:** We need the colab version in order to load pickled models. Please use `pip install -Iv scikit-learn==1.0.2` to sync-up
+- **mediapipe:** We use this to transform pictures to hand landmarks. Overview and examples: https://google.github.io/mediapipe/solutions/hands.html
+
+
 ## Project Timeline
 
 # Milestone 1 Tasks

@@ -49,16 +49,34 @@ def upload_image():
     if request.method == "POST":
         uploaded_img = request.files['myfile']
         img_filename = secure_filename(uploaded_img.filename)
-        uploaded_img.save(os.path.join(app.config['UPLOAD_FOLDER'],img_filename))
-        session['uploaded_img_file_path'] = os.path.join(app.config['UPLOAD_FOLDER'], img_filename)
-        img_file_path = session.get('uploaded_img_file_path',None)
+        
+        if len(img_filename) == 0:
+            return render_template(
+                'image_interpretation2.html',
+                img_file_path='""', 
+                pred='<span style="color:red">No file uploaded</span>'
+            )
+
+        local_img_filename = 'asl.jpg'
+        uploaded_img.save(os.path.join(app.config['UPLOAD_FOLDER'], local_img_filename))
+        session['uploaded_img_file_path'] = os.path.join(
+            app.config['UPLOAD_FOLDER'], local_img_filename
+        )
+        img_file_path = session.get('uploaded_img_file_path', None)
+        
         img = cv2.imread(img_file_path)
         pred = predict_image_letters([img], model_xtree)[0]
-        print(pred)
+        letter, prob = pred
 
+        pred_str = (
+            '<span style="font-size: 18pt;color:grey">'
+            'No ASL Detected</span>'
+        ) if letter is None else (
+            f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+        )
         return render_template(
-            'image_interpretation2.html',img_file_path=img_file_path,
-            pred=f'Letter: {pred[0]} (prob: {pred[1] * 100:.1f}%)'
+            'image_interpretation2.html',
+            img_file_path=img_file_path, pred=pred_str
         )
 
 

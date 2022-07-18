@@ -18,19 +18,17 @@
           <input type="submit" value="Upload">
         </form>
         <br>
-        <p style="color:green;">File uploaded successfully</p>
+        <!-- <p style="color:green;">File uploaded successfully</p> -->
 
         <h1>2. Uploaded image </h1>
         <br>
 <!--        <p> &#45;&#45; Placeholder showing image &#45;&#45; </p>-->
-        <img src= {{ img_file_path }} alt="Image not uploaded, plese try again." width="600" height="400">
+        <img src= {{ img_file_path }} alt="Image not uploaded, plese try again." style="width: 500px; object-fit: contain">
+        <br>
         <br>
         <h1>3. Interpreted result</h1>
-        <p style="font-size:40px" style="color:green">{{ pred }}</p>
+        <p style="font-size:35px;color:rgb(3, 3, 134)">{{ pred | safe}}</p>
         <br>
-
-
-
     </div>
 </header>
 <div class="slide">

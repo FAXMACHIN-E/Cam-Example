@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import pandas as pd
 
 
 def predict_image_letters(images, model, cvt_color=True, static_image_mode=True, 
@@ -20,8 +19,11 @@ def predict_image_letters(images, model, cvt_color=True, static_image_mode=True,
     )
 
     results = [
-        (chr(ord('A') + label), p)
-        for label, p in model_results
+        (
+            chr(ord('A') + label) 
+            if label is not None else None, 
+            p
+        ) for label, p in model_results
     ]
 
     return results
@@ -70,7 +72,7 @@ def images_to_landmark_features(images, cvt_color=True, static_image_mode=True,
     mp_hands = mp.solutions.hands
 
     features = []
-    print(cvt_color, static_image_mode, max_num_hands, min_detection_confidence)
+    
     with mp_hands.Hands(
         static_image_mode=static_image_mode,
         max_num_hands=max_num_hands,
@@ -83,10 +85,11 @@ def images_to_landmark_features(images, cvt_color=True, static_image_mode=True,
             mp_res = hands.process(img)
             landmarks = mp_res.multi_hand_world_landmarks
 
-            features.append(np.array([
-                landmark_to_features(_)
-                for _ in landmarks
-            ]))
+            feat = np.array([]) if landmarks is None else np.array([
+                landmark_to_features(_) for _ in landmarks
+            ])
+            
+            features.append(feat)
        
     return features
 
