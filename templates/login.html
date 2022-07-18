@@ -5,13 +5,15 @@
 
 {% block scripts %}
 <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
-<script defer type="module" src="{{ url_for('static', filename='js/main.js') }}"></script> 
+
 {% endblock %} 
 
 {% block content %}  
-
-<h1>Log in</h1>
-
+<header>
+    <div class="container"> 
+        <h1>Log in</h1>
+    </div>
+</header>
 <div class="slide">
     <div id="vis1" class="vis"></div>
     <!--div id="vis2" class="vis"></div>
