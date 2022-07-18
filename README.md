@@ -91,7 +91,7 @@ Xiaokang Zhang
 
 Nikita Nair  
 - Build a basic website and put it on Heroku **COMPLETE**
-- https://arcane-reef-02788.herokuapp.com/
+- https://arcane-reef-02788.herokuapp.com/ <-- not used anymore
 
 Shaoyi Li
 - Create a model (image as input) and output letter **COMPLETE**. Test accuracy: 81%, okay but not great. Check **Processing** section above for the Colab link.
@@ -112,7 +112,8 @@ Shaoyi Li
 - Add a models folder with .py and .pkl so that the app can predict a given image **COMPLETE**
 - Make intepretation2.html and app.py to predict ASL letters from images **COMPLETE**
 - Make intepretation and intepretation2.html handle corner cases more gracefully. **COMPLETE**
-- Heroku app setup -- fix the installation issues and grant access to the team **COMPLETE**
+- Heroku app setup -- fix the installation issues and grant access to the team **COMPLETE** 
+> Updated link: https://cryptic-ridge-03408.herokuapp.com/
 - Polish index.html **COMPLETE**
 
 Yan Zhang
