@@ -105,7 +105,8 @@ Yan Zhang
  
  # Milestone 3 Tasks
 Xiaokang Zhang
-
+- Add 'about' page describing overall project - purpose, approach, backgroud, etc. **COMPLETE**
+- Build 'Image Interpretation' page - allowing users to upload image, get it displayed and show results *COMPLETE*
 Nikita Nair  
 
 Shaoyi Li
@@ -124,8 +125,7 @@ Yan Zhang
 - login/database/security # Xiaokang and Nikita
 - investigate how D3 can fit into our project #everyone
  
-# Actions in the future 
-- Add 'about' page to the website, e.g., how to help deal/mute people
+
 
 # References & Citations
 
