@@ -110,6 +110,7 @@ Xiaokang Zhang
 - Build 'Image Interpretation' page - allowing users to upload image, get it displayed and show results **COMPLETE**
 
 Nikita Nair  
+- Build and upload login and create account forms for user sign in and user sign up **COMPLETE**
 
 Shaoyi Li
 - Add a models folder with .py and .pkl so that the app can predict a given image **COMPLETE**
