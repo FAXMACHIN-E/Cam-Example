@@ -105,7 +105,8 @@ Yan Zhang
  
  # Milestone 3 Tasks
 Xiaokang Zhang
-- Add 'about' page describing overall project - purpose, approach, backgroud, etc. **COMPLETE**
+- Create a new branch (ken_dev) and make it workable locally (mainly commenting out exploration code for video stream handling) **COMPLETE**
+- Add 'about' page (index) describing overall project - purpose, approach, backgroud, etc. **COMPLETE**
 - Build 'Image Interpretation' page - allowing users to upload image, get it displayed and show results **COMPLETE**
 
 Nikita Nair  
