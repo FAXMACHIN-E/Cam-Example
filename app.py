@@ -66,6 +66,17 @@ def upload_image():
         img_file_path = session.get('uploaded_img_file_path', None)
         
         img = cv2.imread(img_file_path)
+
+        if img is None:
+            return render_template(
+                'image_interpretation2.html',
+                img_file_path='""', 
+                pred=(
+                    '<span style="color:red">Invalid file uploaded: '
+                    f'{img_filename}</span>'
+                )
+            )
+
         pred = predict_image_letters([img], model_xtree)[0]
         letter, prob = pred
 
