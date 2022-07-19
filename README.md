@@ -106,7 +106,8 @@ Yan Zhang
  # Milestone 3 Tasks
 Xiaokang Zhang
 - Add 'about' page describing overall project - purpose, approach, backgroud, etc. **COMPLETE**
-- Build 'Image Interpretation' page - allowing users to upload image, get it displayed and show results *COMPLETE*
+- Build 'Image Interpretation' page - allowing users to upload image, get it displayed and show results **COMPLETE**
+
 Nikita Nair  
 
 Shaoyi Li
