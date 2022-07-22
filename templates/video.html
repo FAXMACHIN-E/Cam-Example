@@ -1,6 +1,17 @@
 {% extends "layout.html" %} 
 
 {% block styles %} 
+#container {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
+#videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
 {% endblock %} 
 
 {% block scripts %}
@@ -10,12 +21,32 @@
 
 {% block content %}  
 <header>
-  <div class="container"> 
+  <div id="container">     
       <h1>Video interpretation</h1>
-      <p style="font-size:25px;color:rgb(3, 3, 134)">We will use OpenCV to access users web camera, perform hand gesture detection, intepret the American Sign Laguage gesture into an English letter, and then serve the output frames to our web browser via the Flask web framework.</p>      
-  </div>
-</header> 
+      <p style="font-size:25px;color:rgb(3, 3, 134)">We will use OpenCV to access client's web camera, perform hand gesture detection, intepret the American Sign Laguage gesture into an English letter, and then serve the output frames to our web browser via the Flask web framework.</p>
+      <video autoplay="true" id="videoElement">
 
+      </video>
+    </div>
+</header> 
+<script>
+  var video = document.querySelector("#videoElement");
+
+function getVideo(){
+  if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+}
+getVideo();
+
+</script>
 <div class="slide">
     <div id="vis1" class="vis"></div>
     <!--div id="vis2" class="vis"></div>
@@ -23,3 +54,4 @@
 </div>
 
 {% endblock %}
+
