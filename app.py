@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request,session
 import gunicorn
 # from imutils.video import VideoStream
-from flask import Response
+# from flask import Response
 # import threading
 # import argparse
 # import datetime
