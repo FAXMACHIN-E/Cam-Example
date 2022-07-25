@@ -35,16 +35,24 @@ window.addEventListener("DOMContentLoaded", function() {
             type: "POST",
             url: "/video_pred",
             data: form,
+            timeout: 500,
             processData : false,
             contentType : false, 
-            success: function (text) {
-                message.textContent = text
-            },
+            // success: function (text) {
+            //     message.textContent = text
+            // },
             // error: function (data) {
-            //     console.log('There was an error uploading your file!');
+            //     console.warn('There was an error predicting video frames!');
             // }
-        }).done(function () {
+        }).done(function (text) {
+            message.textContent = text;
             console.log("Capture sent");
+        }).fail(function(jqXHR, textStatus){
+            if(textStatus === 'timeout')
+            {     
+                console.warn('Failed from timeout'); 
+                //do something. Try again perhaps?
+            }
         });
         }
 
