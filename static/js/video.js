@@ -5,6 +5,8 @@ window.addEventListener("DOMContentLoaded", function() {
     var button = document.getElementById('#btn');
     var buttonIcon = document.getElementById('#btnicon');
 
+    var pred = false
+
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         const getImage = async () => {
         video.srcObject = await navigator.mediaDevices.getUserMedia({ video: true })
@@ -14,19 +16,23 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     button.addEventListener('click', function() {
-        if (predInterval !== null) {
-        clearInterval(predInterval);
-        predInterval = null;
-        // button.textContent = 'Start';
-        button.classList.replace('btn-success', 'btn-primary');
-        buttonIcon.classList.replace('bi-pause', 'bi-play');
-        return;
+        if (pred === true) {
+        // if (predInterval !== null) {
+            // clearInterval(predInterval);
+            // predInterval = null;
+            // button.textContent = 'Start';
+
+            pred = false
+
+            button.classList.replace('btn-success', 'btn-primary');
+            buttonIcon.classList.replace('bi-pause', 'bi-play');
+            return;
         }
 
         var canvas = document.createElement('canvas');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
-
+        var context = canvas.getContext('2d');
         const FPS = 1;
 
         function blobToPredict(blob) {
@@ -37,11 +43,16 @@ window.addEventListener("DOMContentLoaded", function() {
                 type: "POST",
                 url: "/video_pred",
                 data: form,
-                timeout: 1000 / FPS,
+                // timeout: 1000 / FPS,
                 processData : false,
                 contentType : false, 
                 success: function (text) {
-                    message.textContent = text
+                    message.textContent = text;
+
+                    if (pred === true) {
+                        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        canvas.toBlob(blobToPredict, "image/jpg");
+                    }
                 },
                 error: function (data) {
                     console.warn('There was an error predicting video frames!');
@@ -59,13 +70,16 @@ window.addEventListener("DOMContentLoaded", function() {
         }
 
         
-        var context = canvas.getContext('2d');
-        clearInterval(predInterval);
-        predInterval = setInterval(() => {
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            canvas.toBlob(blobToPredict, "image/jpg");
-        }, 1000/FPS);
         
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(blobToPredict, "image/jpg");
+        // clearInterval(predInterval);
+        // predInterval = setInterval(() => {
+        //     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        //     canvas.toBlob(blobToPredict, "image/jpg");
+        // }, 1000/FPS);
+        
+        pred = true
         // button.textContent = 'Stop';
         button.classList.replace('btn-primary', 'btn-success');
         buttonIcon.classList.replace('bi-play', 'bi-pause');
