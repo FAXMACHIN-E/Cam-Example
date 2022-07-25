@@ -116,10 +116,7 @@ def video_pred():
         pred = predict_image_letters([img], model_xtree)[0]
         letter, prob = pred
 
-        pred_str = (
-            '<span style="font-size: 18pt;color:grey">'
-            'No ASL Detected</span>'
-        ) if letter is None else (
+        pred_str = 'No ASL Detected' if letter is None else (
             f'Letter: {letter} (prob: {prob * 100:.1f}%)'
         )
 

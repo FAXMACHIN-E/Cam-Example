@@ -52,7 +52,7 @@
       getImage()
     }
 
-    document.getElementById('#capture').addEventListener('toggle', function() {
+    document.getElementById('#capture').addEventListener('click', function() {
       var canvas = document.createElement('canvas');
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
@@ -63,7 +63,6 @@
         function(blob) {
           form = new FormData();
           form.append('image', blob);
-          var response = ''
           // https://stackoverflow.com/questions/67389537/send-html-video-object-canvas-to-flask-using-ajax
           $.ajax({
               type: "POST",
