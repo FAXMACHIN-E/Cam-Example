@@ -11,6 +11,7 @@ from flask import Response
 # import time
 import cv2
 import os
+import numpy as np
 import joblib
 from werkzeug.utils import secure_filename
 
@@ -92,10 +93,42 @@ def upload_image():
         )
 
 
-@app.route('/video')	
+@app.route('/video', methods=['GET'])	
 def video():
-    
     return render_template('video.html')
+
+@app.route('/video_pred', methods=['POST'])
+def video_pred():
+    if request.method != 'POST':
+        return ''
+    
+    file = request.files['image']
+    if file:
+        fstream = file.read()
+        img = cv2.imdecode(
+            np.fromstring(fstream, np.uint8), 
+            cv2.IMREAD_COLOR
+        )
+
+        if img is None:
+            return render_template('video.html')
+
+        pred = predict_image_letters([img], model_xtree)[0]
+        letter, prob = pred
+
+        pred_str = (
+            '<span style="font-size: 18pt;color:grey">'
+            'No ASL Detected</span>'
+        ) if letter is None else (
+            f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+        )
+
+        return pred_str
+        # return render_template(
+        #     'video.html', pred=pred_str, val=pred_str
+        # )
+    
+    
 
 
 # Route for handling the login page logic
