@@ -28,32 +28,32 @@ window.addEventListener("DOMContentLoaded", function() {
         canvas.height = video.videoHeight;
 
         function blobToPredict(blob) {
-        form = new FormData();
-        form.append('image', blob);
-        // https://stackoverflow.com/questions/67389537/send-html-video-object-canvas-to-flask-using-ajax
-        $.ajax({
-            type: "POST",
-            url: "/video_pred",
-            data: form,
-            timeout: 500,
-            processData : false,
-            contentType : false, 
-            // success: function (text) {
-            //     message.textContent = text
-            // },
-            // error: function (data) {
-            //     console.warn('There was an error predicting video frames!');
-            // }
-        }).done(function (text) {
-            message.textContent = text;
-            console.log("Capture sent");
-        }).fail(function(jqXHR, textStatus){
-            if(textStatus === 'timeout')
-            {     
-                console.warn('Failed from timeout'); 
-                //do something. Try again perhaps?
-            }
-        });
+            form = new FormData();
+            form.append('image', blob);
+            // https://stackoverflow.com/questions/67389537/send-html-video-object-canvas-to-flask-using-ajax
+            $.ajax({
+                type: "POST",
+                url: "/video_pred",
+                data: form,
+                timeout: 500,
+                processData : false,
+                contentType : false, 
+                success: function (text) {
+                    message.textContent = text
+                },
+                error: function (data) {
+                    console.warn('There was an error predicting video frames!');
+                }
+            }).done(function (text) {
+                // message.textContent = text;
+                console.log("Capture sent");
+            }).fail(function(jqXHR, textStatus){
+                if(textStatus === 'timeout')
+                {     
+                    console.warn('Failed from timeout'); 
+                    //do something. Try again perhaps?
+                }
+            });
         }
 
         const FPS = 2;
