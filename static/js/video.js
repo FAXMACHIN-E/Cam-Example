@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", function() {
         clearInterval(predInterval);
         predInterval = null;
         // button.textContent = 'Start';
-        button.classList.replace('btn-secondary', 'btn-primary');
+        button.classList.replace('btn-success', 'btn-primary');
         buttonIcon.classList.replace('bi-pause', 'bi-play');
         return;
         }
@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded", function() {
         }, 1000/FPS);
         
         // button.textContent = 'Stop';
-        button.classList.replace('btn-primary', 'btn-secondary');
+        button.classList.replace('btn-primary', 'btn-success');
         buttonIcon.classList.replace('bi-play', 'bi-pause');
         
         
