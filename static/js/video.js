@@ -27,6 +27,8 @@ window.addEventListener("DOMContentLoaded", function() {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
+        const FPS = 1;
+
         function blobToPredict(blob) {
             form = new FormData();
             form.append('image', blob);
@@ -35,7 +37,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 type: "POST",
                 url: "/video_pred",
                 data: form,
-                timeout: 500,
+                timeout: 1000 / FPS,
                 processData : false,
                 contentType : false, 
                 success: function (text) {
@@ -56,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function() {
             });
         }
 
-        const FPS = 2;
+        
         var context = canvas.getContext('2d');
         clearInterval(predInterval);
         predInterval = setInterval(() => {
