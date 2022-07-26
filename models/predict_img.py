@@ -69,27 +69,28 @@ def images_to_landmark_features(images, cvt_color=True, static_image_mode=True,
         return: list of features (X for the model)
             features: 2D array per image as an image can have multiple hand landmarks 
     """
-    mp_hands = mp.solutions.hands
+    # mp_hands = mp.solutions.hands
 
-    features = []
+    # features = []
     
-    with mp_hands.Hands(
-        static_image_mode=static_image_mode,
-        max_num_hands=max_num_hands,
-        min_detection_confidence=min_detection_confidence
-    ) as hands:
-        for img in images:
-            if cvt_color:            
-                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # with mp_hands.Hands(
+    #     static_image_mode=static_image_mode,
+    #     max_num_hands=max_num_hands,
+    #     min_detection_confidence=min_detection_confidence
+    # ) as hands:
+    #     for img in images:
+    #         if cvt_color:            
+    #             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-            mp_res = hands.process(img)
-            landmarks = mp_res.multi_hand_world_landmarks
+    #         mp_res = hands.process(img)
+    #         landmarks = mp_res.multi_hand_world_landmarks
 
-            feat = np.array([]) if landmarks is None else np.array([
-                landmark_to_features(_) for _ in landmarks
-            ])
+    #         feat = np.array([]) if landmarks is None else np.array([
+    #             landmark_to_features(_) for _ in landmarks
+    #         ])
             
-            features.append(feat)
+    #         features.append(feat)
+    return [np.zeros((1, 62))]
        
     return features
 

@@ -114,14 +114,12 @@ def video_pred():
            
             return ''
 
-        return ''
+        pred = predict_image_letters([img], model_xtree)[0]
+        letter, prob = pred
 
-        # pred = predict_image_letters([img], model_xtree)[0]
-        # letter, prob = pred
-
-        # pred_str = 'No ASL Detected' if letter is None else (
-        #     f'Letter: {letter} (prob: {prob * 100:.1f}%)'
-        # )
+        pred_str = 'No ASL Detected' if letter is None else (
+            f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+        )
 
         return pred_str
         # return render_template(
