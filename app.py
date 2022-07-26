@@ -109,9 +109,10 @@ def video_pred():
             np.fromstring(fstream, np.uint8), 
             cv2.IMREAD_COLOR
         )
-
+        file.close()
         if img is None:
-            return render_template('video.html')
+           
+            return ''
 
         pred = predict_image_letters([img], model_xtree)[0]
         letter, prob = pred
