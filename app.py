@@ -109,17 +109,19 @@ def video_pred():
             np.fromstring(fstream, np.uint8), 
             cv2.IMREAD_COLOR
         )
-        file.close()
+        
         if img is None:
            
             return ''
 
-        pred = predict_image_letters([img], model_xtree)[0]
-        letter, prob = pred
+        return ''
 
-        pred_str = 'No ASL Detected' if letter is None else (
-            f'Letter: {letter} (prob: {prob * 100:.1f}%)'
-        )
+        # pred = predict_image_letters([img], model_xtree)[0]
+        # letter, prob = pred
+
+        # pred_str = 'No ASL Detected' if letter is None else (
+        #     f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+        # )
 
         return pred_str
         # return render_template(
