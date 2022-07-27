@@ -29,11 +29,18 @@ app = Flask(__name__)
 model_xtree = joblib.load(os.path.join(app.root_path, 'models', 'xtree.pkl'))
 
 
-mphands = mp.solutions.hands.Hands(
-    static_image_mode=True,
-    max_num_hands=2,
-    min_detection_confidence=0.3
-)
+mphands = None
+
+def get_mphands():
+    global mphands
+    if mphands is None:
+        mphands = mp.solutions.hands.Hands(
+            static_image_mode=True,
+            max_num_hands=2,
+            min_detection_confidence=0.3
+        )
+    return mphands
+
 
 # vs = VideoStream(src=0).start()
 # time.sleep(2.0)
@@ -86,7 +93,7 @@ def upload_image():
                 )
             )
 
-        pred = predict_image_letters([img], model_xtree, mphands=mphands)[0]
+        pred = predict_image_letters([img], model_xtree, mphands=get_mphands())[0]
         letter, prob = pred
 
         pred_str = (
@@ -122,7 +129,7 @@ def video_pred():
            
             return ''
 
-        pred = predict_image_letters([img], model_xtree, mphands=mphands)[0]
+        pred = predict_image_letters([img], model_xtree, mphands=get_mphands())[0]
         letter, prob = pred
 
         pred_str = 'No ASL Detected' if letter is None else (
