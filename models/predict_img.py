@@ -4,7 +4,7 @@ import numpy as np
 
 
 def predict_image_letters(images, model, cvt_color=True, static_image_mode=True, 
-                          max_num_hands=2, min_detection_confidence=0.5):
+                          max_num_hands=2, min_detection_confidence=0.5, mphands=None):
     """
         images: array-like, a collection of cv2 images
             one image could have 0 or multiple landmarks
@@ -15,7 +15,7 @@ def predict_image_letters(images, model, cvt_color=True, static_image_mode=True,
         return: list of tuples [(label_int, probability), ... ]
     """
     model_results = predict_image_hand_proba(
-        images, model, cvt_color, static_image_mode, max_num_hands, min_detection_confidence
+        images, model, cvt_color, static_image_mode, max_num_hands, min_detection_confidence, mphands
     )
 
     results = [
@@ -30,7 +30,7 @@ def predict_image_letters(images, model, cvt_color=True, static_image_mode=True,
 
 
 def predict_image_hand_proba(images, model, cvt_color=True, static_image_mode=True, 
-                             max_num_hands=2, min_detection_confidence=0.5):
+                             max_num_hands=2, min_detection_confidence=0.5, mphands=None):
     """
         images: array-like, a collection of cv2 images
             one image could have 0 or multiple landmarks
@@ -41,7 +41,7 @@ def predict_image_hand_proba(images, model, cvt_color=True, static_image_mode=Tr
         return: list of tuples [(label_int, probability), ... ]
     """
     features = images_to_landmark_features(
-        images, cvt_color, static_image_mode, max_num_hands, min_detection_confidence
+        images, cvt_color, static_image_mode, max_num_hands, min_detection_confidence, mphands
     )
 
     results = []
@@ -60,7 +60,7 @@ def predict_image_hand_proba(images, model, cvt_color=True, static_image_mode=Tr
 
 
 def images_to_landmark_features(images, cvt_color=True, static_image_mode=True, 
-                                max_num_hands=2, min_detection_confidence=0.5):
+                                max_num_hands=2, min_detection_confidence=0.5, mphands=None):
     """
         images: array-like, a collection of cv2 images
             one image could have 0 or multiple landmarks
@@ -68,31 +68,30 @@ def images_to_landmark_features(images, cvt_color=True, static_image_mode=True,
 
         return: list of features (X for the model)
             features: 2D array per image as an image can have multiple hand landmarks 
-    """
-    # mp_hands = mp.solutions.hands
+    """    
+    if mphands is not None:
+        return [generate_single_features(mphands, _, cvt_color) for _ in images]
 
-    # features = []
-    
-    # with mp_hands.Hands(
-    #     static_image_mode=static_image_mode,
-    #     max_num_hands=max_num_hands,
-    #     min_detection_confidence=min_detection_confidence
-    # ) as hands:
-    #     for img in images:
-    #         if cvt_color:            
-    #             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    mp_hands = mp.solutions.hands
+    with mp_hands.Hands(
+        static_image_mode=static_image_mode,
+        max_num_hands=max_num_hands,
+        min_detection_confidence=min_detection_confidence
+    ) as mphands:
+        return [generate_single_features(mphands, _, cvt_color) for _ in images]
 
-    #         mp_res = hands.process(img)
-    #         landmarks = mp_res.multi_hand_world_landmarks
 
-    #         feat = np.array([]) if landmarks is None else np.array([
-    #             landmark_to_features(_) for _ in landmarks
-    #         ])
-            
-    #         features.append(feat)
-    return [np.zeros((1, 62))]
-       
-    return features
+
+def generate_single_features(hands, image, cvt_color):
+    if cvt_color:         
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+    mp_res = hands.process(image)
+    landmarks = mp_res.multi_hand_world_landmarks
+
+    return np.array([]) if landmarks is None else np.array([
+        landmark_to_features(_) for _ in landmarks
+    ])
 
 
 def landmark_to_features(landmark):
