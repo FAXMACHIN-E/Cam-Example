@@ -86,7 +86,7 @@ def upload_image():
                 )
             )
 
-        pred = predict_image_letters([img], model_xtree)[0]
+        pred = predict_image_letters([img], model_xtree, mphands=mphands)[0]
         letter, prob = pred
 
         pred_str = (
