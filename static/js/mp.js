@@ -92,7 +92,7 @@ window.addEventListener("DOMContentLoaded", function() {
       pred = true;
       // button.classList.replace('btn-primary', 'btn-success');
       buttonIcon.classList.replace('bi-play-circle-fill', 'bi-pause');
-      buttonIcon.style.color = 'grey';
+      buttonIcon.style.color = 'darkgray';
       message.innerHTML = `
       <div class="d-flex align-items-center" style="font-size: 18pt;color:grey">
         Loading Mediapipe to your browser... &nbsp;&nbsp;&nbsp;&nbsp;

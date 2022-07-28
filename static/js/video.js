@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", function() {
         // button.textContent = 'Stop';
         button.classList.replace('btn-primary', 'btn-success');
         buttonIcon.classList.replace('bi-play-circle-fill', 'bi-pause');
-        buttonIcon.style.color = 'gray';
+        buttonIcon.style.color = 'darkgray';
         
         
         // const getResult = async () => {
