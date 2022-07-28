@@ -17,6 +17,7 @@ import mediapipe as mp
 from werkzeug.utils import secure_filename
 
 from models.predict_img import predict_image_letters
+from models.predict_img_lite import predict_landmark_letters
 
 
 
@@ -107,6 +108,19 @@ def upload_image():
             img_file_path=img_file_path, pred=pred_str
         )
 
+
+@app.route('/mediapipe', methods=['GET'])	
+def mp():
+    return render_template('mediapipe.html')
+
+
+@app.route('/mediapipe_pred', methods=['POST'])	
+def mp_pred():
+    mp_obj = request.get_json()
+    letter, prob = predict_landmark_letters(
+        mp_obj['multiHandWorldLandmarks'], model_xtree
+    )
+    return f'Letter: {letter} (prob: {prob * 100:.1f}%)'
 
 @app.route('/video', methods=['GET'])	
 def video():

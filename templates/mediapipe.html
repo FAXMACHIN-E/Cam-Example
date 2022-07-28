@@ -1,0 +1,148 @@
+{% extends "layout.html" %} 
+
+{% block styles %} 
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+{% endblock %} 
+
+
+<!-- <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script> -->
+
+
+
+{% block content %} 
+<div class="container">
+  <div class="ratio ratio-4x3", style="max-width: 640px">
+    <video class="video", id="#video" autoplay allowfullscreen></video>
+  </div>
+  <!-- <div>
+    <canvas class="output_canvas" width="640px" height="360px"></canvas>
+  </div> -->
+  <br/>
+  <div>
+    <button id="#btn" type="button", class="btn btn-primary btn-rounded shadow-none">
+      <i id="#btnicon" class="bi bi-play" style="font-size: 1.8rem;"></i>
+    </button>
+    <p id="#msg" style="font-size:35px;color:rgb(3, 3, 134)"><br/></p>
+  </div>
+  
+</div>
+
+{% endblock %} 
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="module">
+    const videoElement = document.getElementById('#video');
+    const message = document.getElementById('#msg');
+    const button = document.getElementById('#btn');
+    const buttonIcon = document.getElementById('#btnicon');
+
+    var pred = false
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        const getImage = async () => {
+          videoElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: true })
+          videoElement.play();
+        }
+        getImage()
+    }
+
+
+    // videoElement.style.display = "none";
+    // const canvasElement = document.getElementsByClassName('output_canvas')[0];
+    // canvasElement.style.display = "none"
+    // const canvasCtx = canvasElement.getContext('2d');
+    
+    // function onResults(results) {
+    //   canvasCtx.save();
+    //   canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+    //   canvasCtx.drawImage(
+    //       results.image, 0, 0, canvasElement.width, canvasElement.height);
+    //   if (results.multiHandLandmarks) {
+    //     for (const landmarks of results.multiHandLandmarks) {
+    //       drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+    //                      {color: '#00FF00', lineWidth: 2});
+    //       drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 0.01, radius: 4} );
+    //     }
+    //   }
+    //   canvasCtx.restore();
+    // }    
+
+    async function sleep(ms) {
+      return new Promise(r => setTimeout(r, ms))
+    }
+
+    var canvas = document.createElement('canvas');
+    canvas.width = videoElement.videoWidth;
+    canvas.height = videoElement.videoHeight;
+    var context = canvas.getContext('2d');
+  
+    async function canvasToImage(canvas) {
+      let image = await new Image();
+      image.src = await canvas.toDataURL("image/jpeg");
+      return image;
+    }
+
+    async function onRes(results) {
+      if (results.multiHandLandmarks.length === 0) {
+        message.innerHTML = '<span style="font-size: 18pt;color:grey">No hand detected</span>'
+        await sleep(200)
+      } else {
+        const text = await $.ajax({
+          url: '/mediapipe_pred',
+          type: 'POST',
+          contentType: 'application/json;charset=UTF-8',
+          data: JSON.stringify({
+            'multiHandLandmarks': results.multiHandLandmarks,
+            'multiHandWorldLandmarks': results.multiHandWorldLandmarks,
+          })
+        });
+        message.textContent = text;
+        
+      }
+      if (pred === true) {
+        await sleep(100)        
+        hands.send({image: videoElement});
+      }        
+    }
+
+    const hands = new Hands({locateFile: (file) => {
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+    }});
+    hands.setOptions({
+      maxNumHands: 2,
+      modelComplexity: 1,
+      minDetectionConfidence: 0.3,
+      minTrackingConfidence: 0.3
+    });
+    hands.onResults(onRes);
+    
+    async function onBtnClick() {
+      if (pred === false) {
+        pred = true;
+        button.classList.replace('btn-primary', 'btn-success');
+        buttonIcon.classList.replace('bi-play', 'bi-pause');
+        message.innerHTML = '<span style="font-size: 18pt;color:grey">Loading Mediapipe to your browser...</span>'
+        await hands.send({image: videoElement})
+      }
+      else {
+        pred = false;
+        button.classList.replace('btn-success', 'btn-primary');
+        buttonIcon.classList.replace('bi-pause', 'bi-play');
+        message.innerHTML = '<br/>'
+      }
+      
+    }
+    
+    button.addEventListener('click', () => onBtnClick())
+</script>
+
+<!-- <script type="text/javascript" src="{{ url_for('static', filename='js/mp.js') }}"/> -->
+{% endblock %} 
