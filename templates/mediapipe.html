@@ -110,7 +110,10 @@
       if (pred === true) {
         await sleep(100)        
         hands.send({image: videoElement});
-      }        
+      }  
+      else {
+        message.innerHTML = '<br/>'
+      }
     }
 
     const hands = new Hands({locateFile: (file) => {
@@ -141,7 +144,6 @@
         pred = false;
         button.classList.replace('btn-success', 'btn-primary');
         buttonIcon.classList.replace('bi-pause', 'bi-play');
-        message.innerHTML = '<br/>'
       }
       
     }

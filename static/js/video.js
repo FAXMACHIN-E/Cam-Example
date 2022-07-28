@@ -53,6 +53,9 @@ window.addEventListener("DOMContentLoaded", function() {
                         context.drawImage(video, 0, 0, canvas.width, canvas.height);
                         canvas.toBlob(blobToPredict, "image/jpg");
                     }
+                    else {
+                        message.innerHTML = '<br/>'
+                    }
                 },
                 error: function (data) {
                     console.warn('There was an error predicting video frames!');
