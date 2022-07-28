@@ -20,9 +20,9 @@
 <div class="container">
   
   <div class="ratio ratio-4x3 rounded", style="max-width:640px;border: 3px black solid;">
-    <button id="#btn" type="button", class="btn btn-rounded shadow-none"
-      style="display: block;left: 0;position:absolute;right:0">
-      <i id="#btnicon" class="bi bi-play-circle-fill" style="font-size: 8rem;color:darkgreen"></i>
+    <button id="#btn" type="button", class="btn btn-rounded shadow-none justify-content-center align-items-center"
+      style="display: block;left: 0;position:absolute;right:0;top: 0;bottom: 0;">
+      <i id="#btnicon" class="bi bi-play-circle-fill" style="font-size: 8rem;color:darkgreen;"></i>
     </button>
     <video class="video", id="#video"  
       style="top: 0;left: 0;right: 0;bottom: 0;position:absolute;z-index:-1;" 
@@ -39,10 +39,10 @@
   </div>
   
 </div>
-<script type="text/javascript" src="{{ url_for('static', filename='js/mp.js') }}"/>
+
 {% endblock %} 
 
 {% block scripts %}
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
+<script type="text/javascript" src="{{ url_for('static', filename='js/mp.js') }}"></script>
 {% endblock %} 
