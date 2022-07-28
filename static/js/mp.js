@@ -91,7 +91,8 @@ window.addEventListener("DOMContentLoaded", function() {
     if (pred === false) {
       pred = true;
       button.classList.replace('btn-primary', 'btn-success');
-      buttonIcon.classList.replace('bi-play', 'bi-pause');
+      buttonIcon.classList.replace('bi-play-circle-fill', 'bi-pause');
+      buttonIcon.style.color = 'grey';
       message.innerHTML = `
       <div class="d-flex align-items-center" style="font-size: 18pt;color:grey">
         Loading Mediapipe to your browser... &nbsp;&nbsp;&nbsp;&nbsp;
@@ -103,7 +104,8 @@ window.addEventListener("DOMContentLoaded", function() {
     else {
       pred = false;
       button.classList.replace('btn-success', 'btn-primary');
-      buttonIcon.classList.replace('bi-pause', 'bi-play');
+      buttonIcon.classList.replace('bi-pause', 'bi-play-circle-fill');
+      buttonIcon.style.color = 'darkgreen';
     }
     
   }

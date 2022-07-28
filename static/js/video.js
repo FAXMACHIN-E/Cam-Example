@@ -25,7 +25,8 @@ window.addEventListener("DOMContentLoaded", function() {
             pred = false
 
             button.classList.replace('btn-success', 'btn-primary');
-            buttonIcon.classList.replace('bi-pause', 'bi-play');
+            buttonIcon.classList.replace('bi-pause', 'bi-play-circle-fill');
+            buttonIcon.style.color = 'darkgreen';
             return;
         }
 
@@ -85,7 +86,8 @@ window.addEventListener("DOMContentLoaded", function() {
         pred = true
         // button.textContent = 'Stop';
         button.classList.replace('btn-primary', 'btn-success');
-        buttonIcon.classList.replace('bi-play', 'bi-pause');
+        buttonIcon.classList.replace('bi-play-circle-fill', 'bi-pause');
+        buttonIcon.style.color = 'gray';
         
         
         // const getResult = async () => {

@@ -42,14 +42,16 @@
       </video> -->
     </div>
 </header> 
-<div class="ratio ratio-4x3", style="max-width: 640px">
-  <video id="#video" autoplay allowfullscreen></video>
+<div class="ratio ratio-4x3 rounded", style="max-width:640px;border: 3px black solid;">
+  <button id="#btn" type="button", class="btn btn-rounded shadow-none"
+    style="display: block;left: 0;position:absolute;right:0">
+    <i id="#btnicon" class="bi bi-play-circle-fill" style="font-size: 8rem;color:darkgreen"></i>
+  </button>
+  <video class="video", id="#video"  
+    style="top: 0;left: 0;right: 0;bottom: 0;position:absolute;z-index:-1;" 
+    autoplay allowfullscreen>
+  </video>
 </div>
-
-<br/>
-<button id="#btn" type="button", class="btn btn-primary btn-rounded shadow-none">
-  <i id="#btnicon" class="bi bi-play" style="font-size: 1.8rem;"></i>
-</button>
 <p id="#msg" style="font-size:35px;color:rgb(3, 3, 134)"></p>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/video.js') }}"/>
