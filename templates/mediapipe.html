@@ -129,7 +129,12 @@
         pred = true;
         button.classList.replace('btn-primary', 'btn-success');
         buttonIcon.classList.replace('bi-play', 'bi-pause');
-        message.innerHTML = '<span style="font-size: 18pt;color:grey">Loading Mediapipe to your browser...</span>'
+        message.innerHTML = `
+        <div class="d-flex align-items-center" style="font-size: 18pt;color:grey">
+          Loading Mediapipe to your browser... &nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="spinner-border" role="status" aria-hidden="true"></div>
+        </div>
+        `;
         await hands.send({image: videoElement})
       }
       else {
