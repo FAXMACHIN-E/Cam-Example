@@ -90,7 +90,7 @@ window.addEventListener("DOMContentLoaded", function() {
   async function onBtnClick() {
     if (pred === false) {
       pred = true;
-      button.classList.replace('btn-primary', 'btn-success');
+      // button.classList.replace('btn-primary', 'btn-success');
       buttonIcon.classList.replace('bi-play-circle-fill', 'bi-pause');
       buttonIcon.style.color = 'grey';
       message.innerHTML = `
@@ -103,7 +103,7 @@ window.addEventListener("DOMContentLoaded", function() {
     }
     else {
       pred = false;
-      button.classList.replace('btn-success', 'btn-primary');
+      // button.classList.replace('btn-success', 'btn-primary');
       buttonIcon.classList.replace('bi-pause', 'bi-play-circle-fill');
       buttonIcon.style.color = 'darkgreen';
     }
