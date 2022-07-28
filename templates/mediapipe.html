@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
 
 
+
 {% endblock %} 
 
 
@@ -20,6 +21,54 @@
 
 {% block content %} 
 <div class="container">
+  <style>
+    .flipx {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+
+    /* .btn-ctrl{
+      box-shadow: 0 4px #1B371C;
+    }
+    .btn-ctrl:active{
+      box-shadow: 0 0 #1B371C;
+      top: 4px;
+    } */
+    .btn-ctrl{
+      outline: 1;
+      border: 1;
+      display: block;
+      position: relative;
+
+      
+    }
+    .btn-ctrl:focus{
+        outline:1;
+        border:1;
+        box-shadow: none;
+    }
+    .btn-light{
+      background-color: #d6d4d4 !important;
+      box-shadow: 0 2px #4A4A4A !important;
+      color: #4a4a4a;
+    }
+    .btn-light:hover{
+      box-shadow: 0 2px #4A4A4A !important; 
+    }
+    .btn-light:active{
+      box-shadow: 0 0 #4A4A4A !important;
+      top: 2px;
+    }
+  </style>
+  <div class="text-left">
+    <button id="#btn-flipx" type="button", class="btn btn-rounded btn-ctrl btn-light border-dark"
+      onclick="document.getElementById('#video').classList.toggle('flipx')"
+      data-mdb-ripple-duration="0">
+      FlipCam
+      <!-- <span class="border border-1" style="color: black;"></span> -->
+    </button>
+  </div>
+  <br/>
   <div class="ratio ratio-4x3 rounded", style="max-width:640px;border: 3px black solid;">
     <button id="#btn" type="button", class="btn btn-rounded shadow-none border-0"
       onmouseover = "this.style.opacity = '1'" onmouseout = "this.style.opacity = '0.4'"
@@ -27,7 +76,7 @@
       style="display: block;left: 0;position:absolute;right:0;top: 0;bottom: 0;opacity: 0.4;">
       <i id="#btnicon" class="bi bi-play-circle-fill" style="font-size: 8rem;color:darkgreen;"></i>
     </button>
-    <video class="video", id="#video"  
+    <video class="video flipx", id="#video"  
       style="top: 0;left: 0;right: 0;bottom: 0;position:absolute;z-index:-1;" 
       autoplay allowfullscreen>
     </video>
@@ -39,6 +88,7 @@
   <div>
     
     <p id="#msg" style="font-size:35px;color:rgb(3, 3, 134)"><br/></p>
+    
   </div>
   
 </div>
