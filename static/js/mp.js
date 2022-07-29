@@ -39,16 +39,16 @@ window.addEventListener("DOMContentLoaded", function() {
     return new Promise(r => setTimeout(r, ms))
   }
 
-  var canvas = document.createElement('canvas');
-  canvas.width = videoElement.videoWidth;
-  canvas.height = videoElement.videoHeight;
-  var context = canvas.getContext('2d');
+  // var canvas = document.createElement('canvas');
+  // canvas.width = videoElement.videoWidth;
+  // canvas.height = videoElement.videoHeight;
+  // var context = canvas.getContext('2d');
 
-  async function canvasToImage(canvas) {
-    let image = await new Image();
-    image.src = await canvas.toDataURL("image/jpeg");
-    return image;
-  }
+  // async function canvasToImage(canvas) {
+  //   let image = await new Image();
+  //   image.src = await canvas.toDataURL("image/jpeg");
+  //   return image;
+  // }
 
   async function onRes(results) {
     if (results.multiHandLandmarks.length === 0) {
