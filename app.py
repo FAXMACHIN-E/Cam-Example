@@ -2,6 +2,7 @@
 # import the necessary packages
 from flask import Flask, render_template, request, session, redirect, url_for
 import gunicorn
+import sklearn
 import cv2
 import os
 import numpy as np
@@ -9,13 +10,13 @@ import joblib
 import mediapipe as mp
 from werkzeug.utils import secure_filename
 
-from models.predict_img import predict_image_letters
-from models.predict_img_lite import predict_landmark_letters
+from prediction_models.predict_img import predict_image_letters
+from prediction_models.predict_img_lite import predict_landmark_letters
 
 
 app = Flask(__name__)
 
-model_xtree = joblib.load(os.path.join(app.root_path, 'models', 'xtree.pkl'))
+model_xtree = joblib.load(os.path.join(app.root_path, 'prediction_models', 'xtree.pkl'))
 
 mphands = None
 
