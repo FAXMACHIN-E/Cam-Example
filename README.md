@@ -67,6 +67,7 @@ The main components of the app are:
 ## Key Packages
 - **sklearn:** We need the colab version in order to load pickled models. Please use `pip install -Iv scikit-learn==1.0.2` to sync-up
 - **mediapipe:** We use this to transform pictures to hand landmarks. Overview and examples: https://google.github.io/mediapipe/solutions/hands.html
+- **opencv-python-headless:** needed to run cv2 on Heroku. Add this to requirements.txt `opencv-python-headless==4.6.0.66`. We also need the Apt file for other system libraries
 
 
 ## Project Timeline
