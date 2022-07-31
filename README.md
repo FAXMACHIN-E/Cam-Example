@@ -72,7 +72,7 @@ The main components of the app are:
 
 ## Project Timeline
 
-# Milestone 1 Tasks
+### Milestone 1 Tasks
 Xiaokang Zhang
 - Github repository setup **COMPLETE**
 
@@ -83,7 +83,7 @@ Shaoyi Li
 - Make sure mediapipe works with the dataset **COMPLETE**
 > Mediapipe Hands example: https://google.github.io/mediapipe/solutions/hands.html#python-solution-api
 
-# Milestone 2 Tasks
+### Milestone 2 Tasks
 Xiaokang Zhang
 - Update README per discussion **COMPLETE**
 - Readjust team meeting time to accommodate all members **COMPLETE**
@@ -104,7 +104,7 @@ Yan Zhang
  **IN PROCESS**
  
  
- # Milestone 3 Tasks
+ ### Milestone 3 Tasks
 Xiaokang Zhang
 - Create a new branch (ken_dev) and make it workable locally (mainly commenting out exploration code for video stream handling) **COMPLETE**
 - Add 'about' page (index) describing overall project - purpose, approach, backgroud, etc. **COMPLETE**
@@ -124,12 +124,48 @@ Shaoyi Li
 Yan Zhang
 - Heroku app setup **COMPLETE**
 
-# Milestone 4 Tasks
-- get video working # Shaoyi and Yan
-- login/database/security # Xiaokang and Nikita
-- investigate how D3 can fit into our project #everyone
+### Milestone 4 Tasks
+Shaoyi Li
+- make camera frames passed from browser to flask server **COMPLETE**
+- fix the server memory issue (exceeding heorku's limit) in image prediction **COMPLETE**
+- make mediapipe call happening in Javascript (clients' browser) and pass the mdeiapipe's output to flask server **COMPLETE**
+- fix the issue that mediapipe's Javascript call is processing too fast which makes client to freeze  **COMPLETE**
+- add a spinner when mediapipe's Javascript is loading **COMPLETE**
+- add a button to start and pause the video streaming **COMPLETE**
+- add a button to flip camera horizontally for self facing camera (default to self facing) **COMPLETE**
+- make elements responsive **COMPLETE**
+- fix the issue that navbar is not responsive **COMPLETE**
+
+
+### Milestone Final Tasks
+Xiaokang Zhang
+- Add login/signup features and flash alerting **COMPLETE**
+- Add logout alert and profile CRUD and vieing features
+
+Shaoyi Li
+- Add a script box to record the history of predicted letters between video start and stop **COMPLETE**
+- Add a slider to tune the probability threshold for script recording **COMPLETE**
+- Add tooltip for flipcam button and the threshold slider **COMPLETE**
  
 
+
+# Primary responsibility
+
+Shaoyi
+- Training/validation/testing datasets
+- ML model research, training, prediction
+- Video streaming (2 options)
+- Javascript features
+- Add new web elements for complete functionalities
+- Fix Heroku issues (deployment, memory and database)
+- MVP and Final presentation
+- Track the project progress and arrange meetings
+- Keep readme.md up-to-date
+
+Xiaokang
+- image upload features
+- login/signup features
+- help updating readme.md
 
 # References & Citations
 
