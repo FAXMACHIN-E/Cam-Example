@@ -443,6 +443,13 @@ def signup():
 
     return render_template('signup.html', title='Signup', form=form)
 
+
+@app.route('/user_list')
+def user_list():
+    users = User.query.all()
+    print('#users:',len(users))
+    return render_template('user_list.html',users=users)
+
 ###############################################
 
 model_xtree = joblib.load(os.path.join(app.root_path, 'prediction_models', 'xtree.pkl'))
