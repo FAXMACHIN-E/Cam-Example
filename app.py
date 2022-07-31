@@ -446,7 +446,7 @@ def signup():
 
 @app.route('/user_list')
 def user_list():
-    # users = User.query.all()
+    users = User.query.all()
     # print('#users:',len(users))
     return render_template('user_list.html',users=users)
 
