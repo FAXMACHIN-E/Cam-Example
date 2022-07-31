@@ -16,7 +16,7 @@ class File(Db.Model):
     __tablename__ = 'files'
     file_id = Db.Column(Db.Integer, primary_key=True, autoincrement=True)
     uploader = Db.Column(Db.Integer, Db.ForeignKey('users.uid'), nullable=False)
-    user = Db.relationship('User', backref='post')
+    # user = Db.relationship('User', backref='post')
     letter = Db.Column(Db.String(1024), nullable=False) # Note the max length of a string
     # likes = Db.Column(Db.Integer, default=0)
     date_created    = Db.Column( Db.DateTime, nullable = True, default = datetime.now() )
