@@ -3,8 +3,12 @@ window.addEventListener("DOMContentLoaded", function() {
   const message = document.getElementById('#msg');
   const button = document.getElementById('#btn');
   const buttonIcon = document.getElementById('#btnicon');
+  const scriptBox = document.getElementById('#sbox');
+  const sliderOut = document.getElementById('sliderO');
 
   var pred = false
+
+  var curLetter = " "
 
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const getImage = async () => {
@@ -53,6 +57,11 @@ window.addEventListener("DOMContentLoaded", function() {
   async function onRes(results) {
     if (results.multiHandLandmarks.length === 0) {
       message.innerHTML = '<span style="font-size: 18pt;color:grey">No hand detected</span>'
+      let pred_letter = ' '
+      if (pred_letter !== curLetter) {
+        curLetter = pred_letter;
+        scriptBox.textContent += curLetter;
+      }
       await sleep(200)
     } else {
       const text = await $.ajax({
@@ -64,7 +73,16 @@ window.addEventListener("DOMContentLoaded", function() {
           'multiHandWorldLandmarks': results.multiHandWorldLandmarks,
         })
       });
-      message.textContent = text;
+      let response = text.split('|');
+      let pred_letter = response[0];
+      let prob = parseFloat(response[1]);
+      message.textContent = `Letter ${pred_letter} (prob: ${((prob * 100).toFixed(1))}%)`;
+
+      let prob_thres = parseFloat(sliderOut.textContent) / 100;
+      if (prob > prob_thres & pred_letter !== curLetter) {
+        curLetter = pred_letter;
+        scriptBox.textContent += curLetter;
+      }
       
     }
     if (pred === true) {
@@ -100,6 +118,9 @@ window.addEventListener("DOMContentLoaded", function() {
       </div>
       `;
       await hands.send({image: videoElement})
+      
+      curLetter = " "
+      scriptBox.textContent = '';
     }
     else {
       pred = false;

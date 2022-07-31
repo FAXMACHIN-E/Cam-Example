@@ -1,11 +1,15 @@
-var predInterval = null;
+// var predInterval = null;
 window.addEventListener("DOMContentLoaded", function() {
-    var video = document.getElementById('#video');
-    var message = document.getElementById('#msg');
-    var button = document.getElementById('#btn');
-    var buttonIcon = document.getElementById('#btnicon');
+    const video = document.getElementById('#video');
+    const message = document.getElementById('#msg');
+    const button = document.getElementById('#btn');
+    const buttonIcon = document.getElementById('#btnicon');
+    const scriptBox = document.getElementById('#sbox');
+    const sliderOut = document.getElementById('sliderO');
 
     var pred = false
+
+    var curLetter = " "
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         const getImage = async () => {
@@ -51,6 +55,24 @@ window.addEventListener("DOMContentLoaded", function() {
                     message.textContent = text;
 
                     if (pred === true) {
+                        let response = text.split('|');
+                        let pred_letter = response[0];
+                        let prob = parseFloat(response[1]);
+                        
+                        if (pred_letter === " ") {
+                            message.innerHTML = '<span style="font-size: 18pt;color:grey">No hand detected</span>';
+                            prob = 1.0
+                        }
+                        else
+                            message.textContent = `Letter ${pred_letter} (prob: ${((prob * 100).toFixed(1))}%)`;
+
+                        let prob_thres = parseFloat(sliderOut.textContent) / 100;
+                        if (prob > prob_thres & pred_letter !== curLetter ) {
+                            curLetter = pred_letter;
+                            scriptBox.textContent += curLetter;
+                        }
+
+
                         context.drawImage(video, 0, 0, canvas.width, canvas.height);
                         canvas.toBlob(blobToPredict, "image/jpg");
                     }
@@ -60,15 +82,6 @@ window.addEventListener("DOMContentLoaded", function() {
                 },
                 error: function (data) {
                     console.warn('There was an error predicting video frames!');
-                }
-            }).done(function (text) {
-                // message.textContent = text;
-                console.log("Capture sent");
-            }).fail(function(jqXHR, textStatus){
-                if(textStatus === 'timeout')
-                {     
-                    console.warn('Failed from timeout'); 
-                    //do something. Try again perhaps?
                 }
             });
         }
@@ -88,7 +101,9 @@ window.addEventListener("DOMContentLoaded", function() {
         button.classList.replace('btn-primary', 'btn-success');
         buttonIcon.classList.replace('bi-play-circle-fill', 'bi-pause');
         buttonIcon.style.color = 'darkgray';
-        
+
+        scriptBox.textContent = '';
+        curLetter = " "
         
         // const getResult = async () => {
         //   var result = await fetch('result', {

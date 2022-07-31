@@ -106,7 +106,8 @@ def mpipe_pred():
     letter, prob = predict_landmark_letters(
         mp_obj['multiHandWorldLandmarks'], model_xtree
     )
-    return f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+    # return f'{letter}|{prob * 100:.1f}%'
+    return f'{letter}|{prob:.5f}%'
 
 
 @app.route('/video', methods=['GET'])	
@@ -115,12 +116,11 @@ def video():
 
 
 @app.route('/video_pred', methods=['POST'])
-def video_pred():
-    if request.method != 'POST':
-        return ''
-    
+def video_pred():    
     file = request.files['image']
-    if file:
+    if not file:
+        return ' |0'
+    else:
         fstream = file.read()
         img = cv2.imdecode(
             np.fromstring(fstream, np.uint8), 
@@ -128,15 +128,16 @@ def video_pred():
         )
         
         if img is None:
-           
-            return ''
+            return ' |0'
 
         pred = predict_image_letters([img], model_xtree, mphands=get_mphands())[0]
         letter, prob = pred
 
-        pred_str = 'No ASL Detected' if letter is None else (
-            f'Letter: {letter} (prob: {prob * 100:.1f}%)'
-        )
+        # pred_str = 'No ASL Detected' if letter is None else (
+        #     f'Letter: {letter} (prob: {prob * 100:.1f}%)'
+        # )
+
+        pred_str = f'{" " if letter is None else letter}|{prob:.5f}'
 
         return pred_str
  
