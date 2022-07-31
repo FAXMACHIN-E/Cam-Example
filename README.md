@@ -125,9 +125,27 @@ Yan Zhang
 - Heroku app setup **COMPLETE**
 
 # Milestone 4 Tasks
-- get video working # Shaoyi and Yan
-- login/database/security # Xiaokang and Nikita
-- investigate how D3 can fit into our project #everyone
+Shaoyi Li
+- make camera frames passed from browser to flask server **COMPLETE**
+- fix the server memory issue (exceeding heorku's limit) in image prediction **COMPLETE**
+- make mediapipe call happening in Javascript (clients' browser) and pass the mdeiapipe's output to flask server **COMPLETE**
+- fix the issue that mediapipe's Javascript call is processing too fast which makes client to freeze  **COMPLETE**
+- add a spinner when mediapipe's Javascript is loading **COMPLETE**
+- add a button to start and pause the video streaming **COMPLETE**
+- add a button to flip camera horizontally for self facing camera (default to self facing) **COMPLETE**
+- make elements responsive **COMPLETE**
+- fix the issue that navbar is not responsive **COMPLETE**
+
+
+# Milestone Final Tasks
+Xiaokang Zhang
+- Add login/signup features and flash alerting **COMPLETE**
+- Add logout alert and profile CRUD and vieing features
+
+Shaoyi Li
+- Add a script box to record the history of predicted letters between video start and stop **COMPLETE**
+- Add a slider to tune the probability threshold for script recording **COMPLETE**
+- Add tooltip for flipcam button and the threshold slider **COMPLETE**
  
 
 
