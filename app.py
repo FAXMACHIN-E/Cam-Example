@@ -469,6 +469,10 @@ def get_mphands():
 
 @app.route('/')
 def index():
+    users = User.query.all()
+    print('#users:', len(users))
+    for u in users:
+        print(u.username,u.password)
     user = logged_in_user()
     return render_template('index.html',user=user)
 
