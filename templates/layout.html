@@ -64,13 +64,13 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="navbar">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">&nbsp;&nbsp;Bootstrap Example</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-            data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" 
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample04" aria-controls="navbarsExample04"
             aria-expanded="false" aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-    
+
           <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
@@ -84,11 +84,33 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/mediapipe">Live Video (browser loaded)</a>
-              </li>              
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Log in</a>
               </li>
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="/login">Log in</a>-->
+<!--              </li>-->
             </ul>
+                    <ul class="nav nav-pills">
+          <!-- <li class="nav-item">
+                        <a href="/" class="nav-link" aria-current="page">Home</a>
+                    </li> -->
+          {% if user %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">Hi {{user.username}}</a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link">Log Out</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a href="/user/form/signup" class="nav-link">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link">Login</a>
+          </li>
+        {% endif %}
+        </ul>
+
+
           </div>
         </div>
       </nav>
@@ -96,13 +118,16 @@
 
     <!-- Content -->
     <main role="main" class="container">
-      {% block content %} {% endblock %}
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{category}}" role="alert">{{message}}</div>
+      {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
     </main>
 
     <footer class="footer">
       <!-- FOOTER GOES HERE -->
       <div class="container">
-        <span class="text-muted">&copy; 
+        <span class="text-muted">&copy;
           Group NSXY, 2022 S14A. All Rights Reserved.
         </span>
       </div>
