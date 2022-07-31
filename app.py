@@ -376,11 +376,11 @@ def login():
             # Init & sanitize credentials from form request
             username = check_string(request.form['username'], 'username')
             password = check_password(request.form['password'], 'password')
-            print(username, password)
+            # print(username, password)
             # Get the user user by Db query
             user = User.query.filter_by(username=username).first()
             if user == None:
-                print('User is None')
+                # print('User is None')
                 raise KeyError('Invalid username or password')
 
             # Control login validity
@@ -416,8 +416,8 @@ def login():
     # Any error
     except Exception as e:
         # show the error
-        print('enter exception loop')
-        print(get_error(e))
+        # print('enter exception loop')
+        # print(get_error(e))
         flash(get_error(e), 'danger')
 
         # redirect back to login page
