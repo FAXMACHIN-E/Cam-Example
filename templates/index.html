@@ -11,14 +11,14 @@
 {% block content %} 
 <header>
     <div class="container"> 
-        <h1>Image based ASL Interpretor Web Application </h1>
+        <h1>Web ASL Interpretor </h1>
         <br>
         <h2><li>Goals</li></h2>
         <h4>Ideal Use Case (Long Term)</h4>
           <p>
               To build an image recognization Web App to help deaf & mute people 
               communicate, using American Sign Language (ASL), with those who doesn't know ASL. 
-              The App will accept input from both live-stream and video upload.
+              The App will accept input from image upload, live-stream and video upload.
           </p>
           <p> 
               Why is this useful? While we can ask deaf & mute people to type, 
@@ -26,61 +26,78 @@
               in the middle of a presentation going through slides or 
               annotating on a whiteboard.
           </p>
-        <h4>MVP (Now)</h4>
+        <h4>Final Project Deliver (Now)</h4>
         <p>
-          To build an image recognization Web App to predict the English letters
-          based on the uploaded static IMAGE containing relevant ASL signs.
-        </p>
-        <h4>Final Project Plan (by the End of the Summer)</h4>
-        <p>
-          To build an image recognization Web App to predict the English letters
-          based on the VIDEO containing relevant ASL signs. The App will 
-          accept input from live-stream, video upload or both.
+          We built an image recognization Web App to predict the English letters
+          based on either uploaded images or video streams containing relevant ASL signs. 
         </p>
         <p>
-          We plan to have per account login available and the users will be able
+          We have per account login available and the users will be able
           to see history and other information of themselves.
         </p>
         <br><br>
-        <h2><li>Illustration of A Similar Working Example</li></h2>
-        <p> 
-          We'll provide web interface for users to upload files or connect with 
-          their PC's cameras. For each of the frames in the video, we interpret 
-          the American Sign Language gesture into an English letter 
-          (or words and phrases in the future).
-        </p>
+        <h2><li>Model Structure and data flow</li></h2>
         <p>
-          <img src="https://blog.roboflow.com/content/images/2020/10/alphabet-intro.gif" 
-            alt="Example Image" class="ratio" style="max-width: 640px">
-        </p>
-        <p>
-          <cite>GIF from </cite>
-          <a style="font-size:15px" href="https://public.roboflow.com/object-detection/american-sign-language-letters">
-            Roboflow - American Sign Language Letters Dataset
-          </a>
-        </p>
-        <br><br>
-        <h2><li>How Does the Back End Model Work?</li></h2>
-        <p> 
           We first use mediapipe library to parse images to 3D hand landmarks and 
           then use our self-trained multi-label classifier to predict the letter 
-          using the landmarks as the model input.
+          using the landmarks as the model input. 
         </p>
-        <br><br>
-        <h2><li>Major Items Missing for the Final Project Delivery</li></h2>
-        <p> 
-          <ol>
-          <li>Video streaming or video upload</li>
-          <li>Login/Security</li>
-          </ol>
+        <p>
+          The current classifier used is ExtraTrees and out-of-sample accuracy is ~80%.
         </p>
+        <p>
+          Please see the flow charts below for models (abstract) and the web 
+          application (implementation).
+        </p>
+
+
+        <div style="margin-top: 28px;" class="row">
+          <div class="col-sm-8">
+            <div class="card" style="border: 0;" >
+              <div class="card-body">
+                <h5 class="card-title">Model Processing Flow</h5>
+              </div>
+              <img src="/static/img/asl_model_flow.jpg" alt="ASL model processing flow" >
+            </div>
+          </div>
+        </div>
+          
+            
+       
+        <div style="margin-top: 28px;" class="row">
+          <div class="col-sm-5">
+            <div class="card" style="border: 0;">
+              <div class="card-body">
+                <h5 class="card-title">Web App Processing Flow -- Mostly on Server</h5>
+                <p class="card-text">This flow is used by image upload and traditional live video predictions</p>
+              </div>
+              <img src="/static/img/asl_app_flow.jpg" alt="ASL Web App processing flow" >
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="card" style="border: 0;">
+              <div class="card-body">
+                <h5 class="card-title">Web App Processing Flow -- Progressive</h5>
+                <p class="card-text">This flow is used by browser loaded live video predictions</p>
+              </div>
+              <img src="/static/img/asl_app_flow_p.jpg" alt="ASL Web App processing flow, progressive" >
+            </div>
+          </div>
+        </div>
         <br><br>
         <h2><li>Background of American Sign Language (ASL)</li></h2>
+        <h4>ASL Letters</h4>
+        <p>If you'd like to tryout</p>
+        <img src="https://www.startasl.com/wp-content/uploads/asl-alphabet_wallpaper_1920x1200.png" alt="ASL letters only" style="width: 80%;">
+        <p>
+          <cite>Image from </cite>
+          <a style="font-size:15px" href="https://www.startasl.com/american-sign-language-alphabet/">
+            startasl.com alphabet
+          </a>
+        </p>
+        <h4>More about ASL on Wikipedia</h4>
         <p>
             <a style="font-size:15px" href="https://en.wikipedia.org/wiki/American_Sign_Language">Wikipedia - American Sign Language</a>
-        </p>
-        <p>
-          <img alt="American Sign Language ASL.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/7d/American_Sign_Language_ASL.svg/250px-American_Sign_Language_ASL.svg.png" decoding="async" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/7d/American_Sign_Language_ASL.svg/375px-American_Sign_Language_ASL.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/7d/American_Sign_Language_ASL.svg/500px-American_Sign_Language_ASL.svg.png 2x" data-file-width="512" data-file-height="231" width="250" height="113">
         </p>
     </div>
 </header>
