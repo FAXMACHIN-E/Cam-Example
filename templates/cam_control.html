@@ -28,26 +28,6 @@
     top: 2px;
   }
 </style>
-<div class="btn-toolbar mb-3">
-  <div class="btn-group me-2">
-    <button id="#btn-flipx" type="button", class="btn btn-rounded btn-ctrl btn-primary border-dark "
-      onclick="document.getElementById('#video').classList.toggle('flipx')"
-      data-bs-toggle="tooltip" data-bs-placement="top" title="Flip camera" trigger="hover" delay="0"
-      data-mdb-ripple-duration="0">
-      <i class="bi bi-phone-flip" ></i>
-    </button>
-  </div>  
-  <div class="input-group">
-    <form style='margin-top: 8px;' data-bs-toggle="tooltip" data-bs-placement="top" 
-      title="Sensitivity: prediction probability threshold" trigger="hover" delay="0">
-      <input type="range" id="sliderI" value="50" min="15" max="85" oninput="sliderO.value = sliderI.value" style="width: 300px; ">
-      <output id="sliderO">50</output><span>%</span>
-    </form>
-  </div>
-</div>
-
-<br/>
-
 <div class="ratio ratio-4x3 rounded", style="max-width:640px;border: 3px black solid;">
   <button id="#btn" type="button", class="btn btn-rounded shadow-none border-0"
     onmouseover = "this.style.opacity = '1'" onmouseout = "this.style.opacity = '0.4'"
@@ -66,13 +46,30 @@
   <canvas class="output_canvas" width="640px" height="360px"></canvas>
 </div> -->
 
-<br/>
+<div class="btn-toolbar mb-3 " style="margin-top: 8px">
+  <div class="btn-group me-2">
+    <button id="#btn-flipx" type="button", class="btn btn-rounded btn-ctrl btn-primary border-dark "
+      onclick="document.getElementById('#video').classList.toggle('flipx')"
+      data-bs-toggle="tooltip" data-bs-placement="top" title="Flip camera" trigger="hover" delay="0"
+      data-mdb-ripple-duration="0">
+      <i class="bi bi-phone-flip" ></i>
+    </button>
+  </div>  
+  <div class="input-group">
+    <form style='margin-top: 8px;' data-bs-toggle="tooltip" data-bs-placement="top" 
+      title="Sensitivity: prediction probability threshold" trigger="hover" delay="0">
+      <input type="range" id="sliderI" value="50" min="15" max="85" oninput="sliderO.value = sliderI.value" style="width: 300px; ">
+      <output id="sliderO">50</output><span>%</span>
+    </form>
+  </div>
+</div>
 
-<div>
+
+
+<div style="height: 80px;">
   <p id="#msg" style="font-size:35px;color:rgb(3, 3, 134)"><br/></p>
 </div>
 
-<br>
 
 <h5 class="card-title">Predicted ASL Script:</h5>
 <div class="card overflow-auto" style="max-width: 320px;max-height: 100px;min-height: 60px;display: flex;flex-direction: column-reverse;">
