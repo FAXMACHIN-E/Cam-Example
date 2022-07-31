@@ -154,8 +154,9 @@ Shaoyi Li
 Shaoyi
 - Training/validation/testing datasets
 - ML model research, training, prediction
-- Javascript features
 - Video streaming (2 options)
+- Javascript features
+- Add new web elements for complete functionalities
 - Fix Heroku issues (deployment, memory and database)
 - MVP and Final presentation
 - Track the project progress and arrange meetings
