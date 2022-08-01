@@ -430,7 +430,7 @@ def login():
 def logout():
     # Clear all session data
     session.clear()
-    
+
     flash('Successfully logged out!', 'success')
     # Go back to index page
     return redirect(url_for('index'))
@@ -484,14 +484,14 @@ allowed_extensions = {'jpg','jpeg','gif','png'}
 app.config['UPLOAD_FOLDER'] = upload_folder
 app.secret_key = 'finalprojectsecretkey'
 
-@app.route('/image_interpretation')
+@app.route('/image_interpretation', methods=['GET'])
 def image_interpretation():
     try:
         user = logged_in_user()
         # print(user.username)
         # print('----')
         if user == None:
-            raise KeyError('You are not logged in!')
+            raise KeyError('You need to login in order to upload images')
         # # sanitize username
         # username = check_string(request.form['username'], 'username')
         # print(username)
@@ -515,20 +515,18 @@ def image_interpretation():
 
 
 
-@app.route('/image_interpretation',methods=('POST','GET'))
+@app.route('/image_interpretation', methods=['POST'])
 def upload_image():
-    user = logged_in_user()
-    if request.method == "POST":
+    try:
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You need to login in order to upload images')
+
         uploaded_img = request.files['myfile']
         img_filename = secure_filename(uploaded_img.filename)
         
         if len(img_filename) == 0:
-            return render_template(
-                'image_interpretation2.html',
-                img_file_path='""',
-                user=user,
-                pred='<span style="color:red">No file uploaded</span>'
-            )
+            raise Exception('No file uploaded. Please try again.')
 
         local_img_filename = 'asl.jpg'
         uploaded_img.save(os.path.join(app.config['UPLOAD_FOLDER'], local_img_filename))
@@ -540,15 +538,7 @@ def upload_image():
         img = cv2.imread(img_file_path)
 
         if img is None:
-            return render_template(
-                'image_interpretation2.html',
-                img_file_path='""',
-                user=user,
-                pred=(
-                    '<span style="color:red">Invalid file uploaded: '
-                    f'{img_filename}</span>'
-                )
-            )
+            raise Exception(f'Invalid file uploaded: "{img_filename}". Please try again.')
 
         pred = predict_image_letters([img], model_xtree, mphands=get_mphands())[0]
         letter, prob = pred
@@ -563,6 +553,18 @@ def upload_image():
             'image_interpretation2.html',
             img_file_path=img_file_path, pred=pred_str,user=user
         )
+    except KeyError as ke:
+        flash( get_error(ke),'danger')
+        return redirect(url_for('login'))
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page (or referrer)
+        # if we use this a lot, what could we do?
+        last_page = request.referrer if request.referrer else url_for('index')
+        return redirect(last_page)
+
 
 
 @app.route('/mediapipe', methods=['GET'])	
