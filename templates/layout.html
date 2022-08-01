@@ -43,18 +43,20 @@
           <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" aria-current="page" href="/" style="margin-right: 5px;">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/image_interpretation">Image Upload</a>
+                <a class="nav-link" href="/image_interpretation">
+                  <i class="bi bi-image" style="margin-right: 3px;"></i>Image Upload
+                </a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Live Video
+                  <i class="bi bi-camera-reels"  style="margin-right: 3px;"></i>Live Video
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/mediapipe">Live Video (browser loaded)</a></li>
-                  <li><a class="dropdown-item" href="/video">Live Video</a></li>
+                <ul class="dropdown-menu bg-dark dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="/video">Fully on Server</a></li>
+                  <li><a class="dropdown-item" href="/mediapipe">Browser Loaded</a></li>
                 </ul>
               </li> 
             </ul>
@@ -94,7 +96,7 @@
           {% endfor %} 
         {% endif %} 
       {% endwith %} 
-      
+
       {% block content %} {% endblock %}
     </main>
 
