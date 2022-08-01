@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block content %} {% if profile_user %}
+
+<h1>@{{profile_user.username}}</h1>
+
+<!-- HERE IS WHERE WE WOULD SHOW ALL OF THE PROFILE INFO -->
+
+<!-- Allow user to update their information -->
+{% if user and user.username == profile_user.username %}
+<ul class="nav">
+  <li class="nav-item">
+    <a href="/user/update/{{user.username}}" class="nav-link"
+      >Update Profile</a
+    >
+  </li>
+  <li class="nav-item">
+    <a href="/user/update_password/{{user.username}}" class="nav-link">Update Password</a>
+  </li>
+</ul>
+{% endif %}
+
+<!-- User's Posts -->
+{% include "blab_list.html" %} {% endif %} {% endblock %}

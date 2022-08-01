@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+    <!-- <link href="{{ url_for('static', filename='./css/index.css') }}" rel="stylesheet"> -->
+ <style>
+.container_ {
+  /*url("https://www.startasl.com/wp-content/uploads/asl-alphabet_wallpaper_1920x1200.png");*/
+    background-image: url("https://www.startasl.com/wp-content/uploads/asl-alphabet_wallpaper_1920x1200.png");
+    /*<img src= alt="ASL letters only" style="width: 80%;">*/
+    /*background_image:opacity;*/
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+    /*mix-blend-mode: multiply;*/
+    opacity: 0.1;
+}
+
+</style>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+
+{% if user is defined %}<h1>Hi, {{ user.username }}!</h1>
+{% else %}<h1>Hi, guest!</h1>{% endif %}
+
+<!-- BEGIN BLABS -->
+{% include "blab_list.html" %}
+<!-- END BLABS -->
+
+<!-- BEGIN BLAB FORM -->
+{% include "blab_form.html" %}
+<!-- END BLAB FORM -->
+
+<img src = "https://www.startasl.com/wp-content/uploads/asl-alphabet_wallpaper_1920x1200.png" width="50%" height="50%" opacity="0.5">
+
+{% endblock %}
