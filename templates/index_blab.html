@@ -31,9 +31,27 @@
 <!-- END BLABS -->
 
 <!-- BEGIN BLAB FORM -->
-{% include "blab_form.html" %}
+
+   
+  <div class="dropdown">
+    New ASL Blab:
+    <button class="btn btn-white dropdown-toggle border-0" type="button" id="newblab" 
+      data-bs-toggle="dropdown" aria-expanded="false"  style="margin-top: -4px;">
+      &#x1F4AC;
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="/video">Video: Fully on Server</a></li>
+      <li><a class="dropdown-item" href="/mediapipe">Video: Browser Loaded</a></li>
+    </ul>
+  </div>
+  
+
+
+  
+  
+</ul>
 <!-- END BLAB FORM -->
 
-<img src = "https://www.startasl.com/wp-content/uploads/asl-alphabet_wallpaper_1920x1200.png" width="50%" height="50%" opacity="0.5">
+<!-- <img src = "https://www.startasl.com/wp-content/uploads/asl-alphabet_wallpaper_1920x1200.png" width="50%" height="50%" opacity="0.5"> -->
 
 {% endblock %}
