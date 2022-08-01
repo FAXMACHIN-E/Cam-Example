@@ -17,6 +17,6 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-# class BlabForm(FlaskForm):
-#     content = TextAreaField('Content', validators=[DataRequired()])
-#     submit = SubmitField('Blab')
+class BlabForm(FlaskForm):
+    content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Blab')
