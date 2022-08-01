@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script type="text/javascript">
+    var graphs = {{ graphJSON | safe }};
+    Plotly.newPlot('chart', graphs,{}, {responsive: true});        
+</script>
+{% endblock %}
+
+{% block content %}
+
+<h1>{{header}}</h1>
+<h6><a href="/#modelflow">Return to About</a></h6>
+<div class="row">
+    <div class="col-md-10">
+        <div id="chart" class="responsive-plot"></div>
+    </div>
+</div>
+<div>{{description}}</div>
+
+{% endblock %}

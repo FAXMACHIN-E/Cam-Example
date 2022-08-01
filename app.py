@@ -19,6 +19,11 @@ from forms.forms import SignupForm, LoginForm
 from os import environ
 from passlib.hash import sha256_crypt
 
+import plotly
+import plotly.express as px
+import pandas as pd
+import json
+
 load_dotenv('.env')
 
 app = Flask(__name__)
@@ -614,6 +619,37 @@ def video_pred():
         pred_str = f'{" " if letter is None else letter}|{prob:.5f}'
 
         return pred_str
+
+
+graph_jason = None
+
+
+def graph_jason_process_stats():
+    """
+    based on static data
+    """
+    global graph_jason
+    if graph_jason is None:
+        process_stats = pd.concat([
+            pd.read_csv('./data/video_pred.csv').assign(variation='Fully on Server'),
+            pd.read_csv('./data/mediapipe_pred.csv').assign(variation='Browser Loaded')
+        ])
+        fig = px.histogram(
+            process_stats, x='process time (ms)', nbins=60, color='variation', 
+            opacity=0.6, histnorm='percent', barmode='overlay',
+            # width=720, height=360,
+            color_discrete_sequence=px.colors.qualitative.Antique
+        )
+        fig.update_layout(title_text='Histogram: Server Process Time per Frame', title_x=0.5, autosize=True)
+        fig.update_traces(hovertemplate='%{y:.1f}%; range: %{x} ms')
+        graph_jason = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return graph_jason
+
+
+
+@app.route('/chart/proctime')
+def chart_proctime():
+    return render_template('plotly.html', graphJSON=graph_jason_process_stats())
  
 
 #
