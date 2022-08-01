@@ -158,6 +158,7 @@ Shaoyi
 - Javascript features
 - Add new web elements for complete functionalities
 - Fix Heroku issues (deployment, memory and database)
+- Testing, bug fixing and code cleaning ups for the whole project.
 - MVP and Final presentation
 - Track the project progress and arrange meetings
 - Keep readme.md up-to-date
