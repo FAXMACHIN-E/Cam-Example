@@ -16,6 +16,7 @@
       rel="stylesheet"
     /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ url_for('static', filename='./css/reset.css') }}" rel="stylesheet" />
     <style>
       .alert-success {
@@ -31,7 +32,7 @@
       <!-- from https://getbootstrap.com/docs/5.0/examples/navbars/ -->
       <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">&nbsp;&nbsp;ASL Interpretor</a>
+          <a class="navbar-brand" href="/">&nbsp;&nbsp;<i class="fa fa-american-sign-language-interpreting"></i>ASL Interpretor</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarsExample04" aria-controls="navbarsExample04"
             aria-expanded="false" aria-label="Toggle navigation"
@@ -42,22 +43,22 @@
           <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Description</a>
+                <a class="nav-link active" aria-current="page" href="/"><i class="fa fa-fw fa-home"></i>Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/image_interpretation">Image Upload</a>
+                <a class="nav-link" href="/image_interpretation"><i class="fa fa-fw fa-file-image-o"></i>Image Upload</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/video">Live Video</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/mediapipe">Live Video (browser loaded)</a>
-              </li>
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link" href="/login">Log in</a>-->
-<!--              </li>-->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-fw fa-file-video-o"></i>Live Video
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/mediapipe">Live Video (browser loaded)</a></li>
+                  <li><a class="dropdown-item" href="/video">Live Video</a></li>
+                </ul>
+              </li> 
             </ul>
-                    <ul class="nav nav-pills">
+          <ul class="nav nav-pills ms-auto">
           <!-- <li class="nav-item">
                         <a href="/" class="nav-link" aria-current="page">Home</a>
                     </li> -->
@@ -70,10 +71,10 @@
           </li>
           {% else %}
           <li class="nav-item">
-            <a href="/user/form/signup" class="nav-link">Sign Up</a>
+            <a href="/user/form/signup" class="nav-link"><i class='fa fa-sign-in'>Sign Up</a>
           </li>
           <li class="nav-item">
-            <a href="/login" class="nav-link">Login</a>
+            <a href="/login" class="nav-link"><i class="fa fa-fw fa-user"></i>Login</a>
           </li>
         {% endif %}
         </ul>
