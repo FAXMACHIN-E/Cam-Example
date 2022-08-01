@@ -10,9 +10,21 @@
 	
 	<tbody>
 		{% for blab in blabs %}<tr>
-			<th scope="row" class="col-2"><a href="/user/retrieve/{{blab.user.username}}" alt="@{{blab.user.username}}'s Profile'">@{{ blab.user.username }}</a>:</th>
+			<th scope="row" class="col-2">
+				<a href="/user/retrieve/{{blab.user.username}}" alt="@{{blab.user.username}}'s Profile'">
+					@{{ blab.user.username }}
+				</a>
+				:
+			</th>
 			<td>{{blab.content}}</td>
-			<td class="col-2">{{blab.likes}}&nbsp;{% if user and blab.user.username != user.username %}<a href="/blab/like/{{blab.blab_id}}">&#x1F44D;</a>&nbsp;<a href="/blab/dislike/{{blab.blab_id}}">&#x1F44E;</a>{% endif %}</td>
+			<td class="col-2">
+				{{blab.likes}}&nbsp;
+				{% if user and blab.user.username != user.username %}
+				<a href="/blab/like/{{blab.blab_id}}">&#x1F44D;</a>
+				&nbsp;
+				<a href="/blab/dislike/{{blab.blab_id}}">&#x1F44E;</a>
+				{% endif %}
+			</td>
 		</tr>{% endfor %}
 	</tbody>
 </table>
