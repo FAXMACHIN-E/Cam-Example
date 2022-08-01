@@ -1,3 +1,4 @@
+// customised from https://google.github.io/mediapipe/solutions/hands.html#javascript-solution-api
 window.addEventListener("DOMContentLoaded", function() {
   const videoElement = document.getElementById('#video');
   const message = document.getElementById('#msg');

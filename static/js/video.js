@@ -1,4 +1,5 @@
 // var predInterval = null;
+// structure is from https://github.com/jimbobbennett/HappySadAngryWorkshop
 window.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById('#video');
     const message = document.getElementById('#msg');
