@@ -36,14 +36,14 @@
           to see history and other information of themselves.
         </p>
         <br><br>
-        <h2><li>Model Structure and data flow</li></h2>
+        <h2><li>Model Structure and Data Flow</li></h2>
         <p>
           We first use mediapipe library to parse images to 3D hand landmarks and 
           then use our self-trained multi-label classifier to predict the letter 
           using the landmarks as the model input. 
         </p>
         <p>
-          The current classifier used is ExtraTrees and out-of-sample accuracy is ~80%.
+          The current classifier used is random forest style (ExtraTrees) and out-of-sample accuracy is ~80%.
         </p>
         <p>
           Please see the flow charts below for models (abstract) and the web 
