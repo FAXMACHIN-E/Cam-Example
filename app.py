@@ -14,8 +14,8 @@ from prediction_models.predict_img import predict_image_letters
 from prediction_models.predict_img_lite import predict_landmark_letters
 
 from dotenv import load_dotenv
-from models.models import Db, User,File
-from forms.forms import SignupForm, LoginForm
+from models.models import Db, User,File, Blab
+from forms.forms import SignupForm, LoginForm, BlabForm
 from os import environ
 from passlib.hash import sha256_crypt
 
@@ -187,9 +187,9 @@ def user_retrieve(username):
         # get the user's files
         # Lab7 HW: Use relationships to get these
         # See: https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
-        files = File.query.filter_by(uploader=profile_user.uid).all()
+        blabs = Blab.query.filter_by(author=profile_user.uid).all()
 
-        return render_template("profile.html", user=user, profile_user=profile_user, files=files,
+        return render_template("profile.html", user=user, profile_user=profile_user, blabs=blabs,
                                title=f'@{profile_user.username}')
 
     # Not logged in, go to login page
@@ -207,7 +207,7 @@ def user_retrieve(username):
         # redirect to index
         # how would we go back to the page we were just at?
         # See: https://tedboy.github.io/flask/generated/generated/flask.Request.referrer.html
-        return redirect(url_for('index'))
+        return redirect(url_for('index_blab'))
 
     # Any other error
     except Exception as e:
@@ -215,7 +215,7 @@ def user_retrieve(username):
         flash(get_error(e), 'danger')
 
         # redirect back to signup page
-        return redirect(url_for('index'))
+        return redirect(url_for('index_blab'))
 
 
 @app.route('/user/update/<username>', methods=['POST'])
@@ -406,7 +406,9 @@ def login():
             flash(f'{username} is now logged in!', 'success')
 
             # go to the index page
-            return redirect(url_for('index'))
+            return redirect(url_for('index_blab'))
+            # last_page = request.referrer if request.referrer else url_for('index')
+            # return redirect(last_page)
 
         else:  # GET
             # Get the logged in user
@@ -455,6 +457,267 @@ def user_list():
     users = User.query.all()
     # print('#users:',len(users))
     return render_template('user_list.html',users=users)
+
+###############################################
+#blab related
+
+MAX_BLAB_LENGTH     = 1024
+
+
+@app.route('/index_blab')
+def index_blab():
+    user = logged_in_user()
+
+    # if we're logged in, show only our blabs
+    # Lab7 HW: Need to add a way to see other user's blabs and follow them!
+    if user:
+        blabs = Blab.query.all()
+
+        # create a form so logged in user can create new blabs!
+        form = BlabForm()
+
+        # Show my blabs
+        return render_template('index_blab.html', title='Blab Home', blabs=blabs, user=user, blab_form=form, action="create")
+    else:
+        # get all blabs
+        # Lab7 HW: Paginate!
+        blabs = Blab.query.all()
+
+        return render_template('index_blab.html', title='Blab Home', blabs=blabs)
+
+
+# This is to check a valid blab id
+def check_blab_id(blab_id=None):
+    try:
+        blab_id = int(blab_id)
+    except:
+        raise ValueError('Invalid Blab ID: {blab_id}')
+
+    if blab_id < 0:
+        raise ValueError('Invalid Blab ID: {blab_id}')
+
+    return blab_id
+
+
+# /blab/create
+@app.route('/blab/create', methods=['POST'])
+def blab_create():
+    try:
+        # user must be logged in to view user profiles!
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You are not logged in!')
+
+        # sanitize input
+        content = check_string(request.form['content'], 'content', MAX_BLAB_LENGTH)
+
+        # create a new blab
+        blab = Blab(author=user.uid, content=content)
+
+        # add it to the db
+        Db.session.add(blab)
+        Db.session.commit()
+
+        # go back to the index page
+        return redirect(url_for('index_blab'))
+
+    # Any error
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page
+        return redirect(url_for('index_blab'))
+
+
+@app.route('/blab/retrieve/<blab_id>')
+def blab_retrieve(blab_id):
+    try:
+        # user must be logged in to view user profiles!
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You are not logged in!')
+
+        # sanitize user input
+        blab_id = check_blab_id(blab_id)
+
+        # get the blab
+        blab = Blab.query.filter_by(blab_id=blab_id).first()
+        if not blab:
+            raise KeyError("No such blab!")
+
+        # does this blab belong to the logged in user?
+        if user.uid != blab.author:
+            raise PermissionError("Unauthorized action!")
+
+        # show the index page, only showing the selected blab
+        return render_template('index_blab.html', title=f'blab ({blab_id})', blabs=[blab])
+
+    # Any error
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page
+        return redirect(url_for('index_blab'))
+
+
+@app.route('/blab/update/<blab_id>', methods=['POST'])
+def blab_update(blab_id):
+    try:
+        # user must be logged in to view user profiles!
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You are not logged in!')
+
+        # sanitize user input
+        blab_id = check_blab_id(blab_id)
+        content = check_string(request.form['content'], 'content', MAX_BLAB_LENGTH)
+
+        # get the blab
+        blab = Blab.query.filter_by(blab_id=blab_id).first()
+        if not blab:
+            raise KeyError("No such blab!")
+
+        # does this blab belong to the logged in user?
+        if user.uid != blab.author:
+            raise PermissionError("Unauthorized action!")
+
+        # update the blab
+        blab.content = content
+
+        # commit to db
+        Db.session.commit()
+
+        # show the index page, only showing the selected blab
+        return render_template('index_blab.html', title=f'blab ({blab_id})', blabs=[blab])
+
+    # Any error
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page
+        return redirect(url_for('index_blab'))
+
+
+@app.route('/blab/delete/<blab_id>', methods=['POST'])
+def blab_delete(blab_id):
+    try:
+        # user must be logged in to view user profiles!
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You are not logged in!')
+
+        # sanitize user input
+        blab_id = check_blab_id(blab_id)
+
+        # get the blab
+        blab = Blab.query.filter_by(blab_id=blab_id).first()
+        if not blab:
+            raise KeyError("No such blab!")
+
+        # does this blab belong to the logged in user?
+        if user.uid != blab.author:
+            raise PermissionError("Unauthorized action!")
+
+        # delete the blab
+        Db.session.delete(blab)
+
+        # commit to db
+        Db.session.commit()
+
+        # go back to the index page
+        return redirect(url_for('index_blab'))
+
+        # Any error
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page
+        return redirect(url_for('index_blab'))
+
+
+@app.route('/blab/like/<blab_id>')
+def like_blab(blab_id):
+    try:
+        # user must be logged in to view user profiles!
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You are not logged in!')
+
+        # sanitize user input
+        blab_id = check_blab_id(blab_id)
+
+        # get the blab
+        blab = Blab.query.filter_by(blab_id=blab_id).first()
+        if not blab:
+            raise KeyError("No such blab!")
+
+        # does this blab belong to the logged in user?
+        if user.uid == blab.author:
+            raise PermissionError("You can't like your own posts!")
+
+        # update likes
+        blab.likes = blab.likes + 1
+
+        # update the db
+        Db.session.commit()
+
+        # redirect back to index page (or referrer)
+        # if we use this a lot, what could we do?
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
+
+        # Any error
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page
+        return redirect(url_for('index_blab'))
+
+
+@app.route('/blab/dislike/<blab_id>')
+def dislike_blab(blab_id):
+    try:
+        # user must be logged in to view user profiles!
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You are not logged in!')
+
+        # sanitize user input
+        blab_id = check_blab_id(blab_id)
+
+        # get the blab
+        blab = Blab.query.filter_by(blab_id=blab_id).first()
+        if not blab:
+            raise KeyError("No such blab!")
+
+        # does this blab belong to the logged in user?
+        if user.uid == blab.author:
+            raise PermissionError("You can't dislike your own posts!")
+
+        # update likes
+        blab.likes = blab.likes - 1
+
+        # update the db
+        Db.session.commit()
+
+        # redirect back to index page (or referrer)
+        # if we use this a lot, what could we do?
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
+
+        # Any error
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page
+        return redirect(url_for('index_blab'))
+
 
 ###############################################
 
