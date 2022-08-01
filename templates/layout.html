@@ -17,53 +17,21 @@
     /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="{{ url_for('static', filename='./css/reset.css') }}" rel="stylesheet" />
+    <style>
+      .alert-success {
+        background-color: rgb(110, 228, 110);
+      }
+
+    </style>
     {% block styles %} {% endblock %}
   </head>
   <body>
     <header>
       <!-- NAV BAR GOES HERE -->
-      <!-- from https://mdbootstrap.com/docs/standard/navigation/navbar/#subsection-nav -->
-      <!-- <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">&nbsp;&nbsp;MDB Example</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Description</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/image_interpretation">Image Upload</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/video">Live Video</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/mediapipe">Live Video (browser loaded)</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Log in</a>
-              </li>
-            </ul>
-            </ul>
-          </div>
-        </div>
-      </nav> -->
-
       <!-- from https://getbootstrap.com/docs/5.0/examples/navbars/ -->
       <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">&nbsp;&nbsp;Bootstrap Example</a>
+          <a class="navbar-brand" href="/">&nbsp;&nbsp;ASL Interpretor</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarsExample04" aria-controls="navbarsExample04"
             aria-expanded="false" aria-label="Toggle navigation"
