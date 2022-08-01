@@ -82,7 +82,7 @@ window.addEventListener("DOMContentLoaded", function() {
                     }
                 },
                 error: function (data) {
-                    console.warn('There was an error predicting video frames!');
+                    // console.warn('There was an error predicting video frames!');
                 }
             });
         }
