@@ -20,6 +20,13 @@
 
 {% block content %} 
 <div class="container">
+    <h2>Live Video (mediapipe loaded in browser)</h2>
+    <p style="font-size:20px;color:rgb(3, 3, 134); max-width: 720px;white-space: pre-line;">
+        The video stream will first be sent to the browser-loaded Mediapipe library to extract landmarks and then the landmarks will be sent to the server to predict English letters.
+        
+        The slider is used to tune prediction sensitivity for the script.
+    </p>
+    
 {% include "cam_control.html" %} 
 </div>
 
