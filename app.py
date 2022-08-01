@@ -430,7 +430,8 @@ def login():
 def logout():
     # Clear all session data
     session.clear()
-
+    
+    flash('Successfully logged out!', 'success')
     # Go back to index page
     return redirect(url_for('index'))
 
