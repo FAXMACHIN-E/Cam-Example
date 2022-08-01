@@ -19,4 +19,4 @@ class LoginForm(FlaskForm):
 
 class BlabForm(FlaskForm):
     content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Blab')
+    submit = SubmitField('Save Script')

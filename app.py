@@ -474,10 +474,10 @@ def index_blab():
         blabs = Blab.query.all()
 
         # create a form so logged in user can create new blabs!
-        form = BlabForm()
+        # form = BlabForm()
 
         # Show my blabs
-        return render_template('index_blab.html', title='Blab Home', blabs=blabs, user=user, blab_form=form, action="create")
+        return render_template('index_blab.html', title='Blab Home', blabs=blabs, user=user, action="create")
     else:
         # get all blabs
         # Lab7 HW: Paginate!
@@ -518,16 +518,22 @@ def blab_create():
         Db.session.add(blab)
         Db.session.commit()
 
+        flash(
+            'You successfully saved a new ASL script! Click here to check '
+            f'<a href="/user/retrieve/{user.username}" class="alert-link">Your Profile</a>', 
+            'success'
+        )
         # go back to the index page
-        return redirect(url_for('index_blab'))
-
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
     # Any error
     except Exception as e:
         # show the error
         flash(get_error(e), 'danger')
 
         # redirect back to index page
-        return redirect(url_for('index_blab'))
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
 
 
 @app.route('/blab/retrieve/<blab_id>')
@@ -838,7 +844,7 @@ def upload_image():
 @app.route('/mediapipe', methods=['GET'])	
 def mpipe():
     user = logged_in_user()
-    return render_template('mediapipe.html',user=user)
+    return render_template('mediapipe.html',user=user, form=BlabForm(), action='create')
 
 
 @app.route('/mediapipe_pred', methods=['POST'])	
@@ -854,7 +860,8 @@ def mpipe_pred():
 @app.route('/video', methods=['GET'])	
 def video():
     user = logged_in_user()
-    return render_template('video.html',user=user)
+
+    return render_template('video.html', user=user, form=BlabForm(), action='create')
 
 
 @app.route('/video_pred', methods=['POST'])

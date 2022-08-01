@@ -76,10 +76,50 @@
 
 
 <h5 class="card-title">Predicted ASL Script:</h5>
-<div class="card overflow-auto" style="max-width: 320px;max-height: 100px;min-height: 60px;display: flex;flex-direction: column-reverse;">
+<!-- <div class="card overflow-auto" style="max-width: 320px;max-height: 100px;min-height: 60px;display: flex;flex-direction: column-reverse;">
   <div class="card-body">
     
     <p class="card-text" id="#sbox" ></p>
   </div>
-</div>
+</div> -->
+
+
+
+
+<form class="form needs-validation" method="POST" action="/blab/{{ action }}">
+	{{ form.hidden_tag() }}
+
+	{% for field in form %} 
+		{% if field.id != 'submit' and field.id != 'csrf_token' %}
+			<div class="form-group" style="max-width: 320px;max-height: 100px;min-height: 60px;display: flex;flex-direction: column-reverse;" id="#sformg">
+			{{ field( class="form-control needs-validation", readonly=true, id="#sbox") }}
+			{% if field.errors %}
+        {% for error in field.errors %}
+        <p class="form-error-message">{{ error }}</p>
+        {% endfor %}
+      {% endif %}
+			</div>
+ 		{% endif %} 
+	{% endfor %}
+  <div class="btn-group me-2">
+    <div class="form-submit">
+      {{ form.submit( 
+        class="btn btn-rounded btn-ctrl btn-primary border-dark", 
+        style='margin-top: 8px;', 
+        onclick="document.getElementById('#sbox').removeAttribute('readonly')" 
+      ) }}
+    </div>
+    <div>
+      <button id="#btn-flipx" type="button", class="btn btn-rounded btn-ctrl btn-primary border-dark "
+      onclick="document.getElementById('#sbox').toggleAttribute('readonly')" style='margin-top: 8px;'>
+      <i class="bi bi-pencil-square"></i>
+    </button>
+    </div>
+    
+  </div>
+	
+</form>
+<br/>
+
+
 <!-- <div class="overflow-auto rounded" id="#sbox" style="border: 1px solid #000;max-width:320px; max-height: 240px;"></div> -->
