@@ -14,21 +14,26 @@
         <h1>1. Please select an image to upload </h1>
         <form method="POST" enctype="multipart/form-data" action="/image_interpretation">
           <label for="myfile">Select a file:</label>
-          <input type="file" id="myfile" name="myfile"><br><br>
+          <input type="file" id="myfile" name="myfile" required><br><br>
           <input type="submit" value="Upload">
         </form>
+        {% if img_file_path %}
         <br>
-        <!-- <h1>2. Uploaded image </h1>
+        <!-- <p style="color:green;">File uploaded successfully</p> -->
+
+        <h1>2. Uploaded image </h1>
         <br>
-        <p> -- Placeholder showing image -- </p>
-        <img src="myfile" alt="Flowers in Chania">
+<!--        <p> &#45;&#45; Placeholder showing image &#45;&#45; </p>-->
+        <img src= {{ img_file_path }} alt="ASL Image." 
+            class="ratio"
+            style="max-width: 400px; object-fit: contain"
+        >
+        <br>
         <br>
         <h1>3. Interpreted result</h1>
-         <p> -- Placeholder showing result -- </p>
-        <br> -->
-
-
-
+        <p style="font-size:35px;color:rgb(3, 3, 134)">{{ pred | safe}}</p>
+        <br>
+        {% endif %}
     </div>
 </header>
 <div class="slide">

@@ -550,8 +550,8 @@ def upload_image():
             f'Letter: {letter} (prob: {prob * 100:.1f}%)'
         )
         return render_template(
-            'image_interpretation2.html',
-            img_file_path=img_file_path, pred=pred_str,user=user
+            'image_interpretation.html',
+            img_file_path=img_file_path, pred=pred_str, user=user
         )
     except KeyError as ke:
         flash( get_error(ke),'danger')
