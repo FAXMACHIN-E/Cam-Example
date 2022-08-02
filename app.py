@@ -224,53 +224,54 @@ def user_retrieve(username):
         return redirect(url_for('index_blab'))
 
 
-@app.route('/user/update/<username>', methods=['POST'])
-def user_update(username):
-    try:
-        # user must be logged in to view user profiles!
-        user = logged_in_user()
-        if user == None:
-            raise KeyError('You are not logged in!')
+# Not implemented
+# @app.route('/user/update/<username>', methods=['POST'])
+# def user_update(username):
+#     try:
+#         # user must be logged in to view user profiles!
+#         user = logged_in_user()
+#         if user == None:
+#             raise KeyError('You are not logged in!')
 
-        # sanitize input
-        username = check_string(request.form['username'], 'username')
-        # if we had additional information for updating, it would be here!
-        # variable1 = check_???( request.form['variable1'], 'variable1'
-        # variable2 = check_???( request.form['variable2'], 'variable2'
-        # variable3 = check_???( request.form['variable3'], 'variable3'
+#         # sanitize input
+#         username = check_string(request.form['username'], 'username')
+#         # if we had additional information for updating, it would be here!
+#         # variable1 = check_???( request.form['variable1'], 'variable1'
+#         # variable2 = check_???( request.form['variable2'], 'variable2'
+#         # variable3 = check_???( request.form['variable3'], 'variable3'
 
-        # The logged in user can only update their own profile!
-        if username != user.username:
-            raise PermissionError('Unauthorized action!')
+#         # The logged in user can only update their own profile!
+#         if username != user.username:
+#             raise PermissionError('Unauthorized action!')
 
-        # Hrm..! There's not much to do here! Why don't we want to modify passwords here??? Where would we do it instead?
-        # See below
-        # if we did have extra variables to update:
-        # user.variable1 = variable1
-        # user.variable2 = variable2
-        # user.variable3 = variable3
-        # Db.session.commit()
+#         # Hrm..! There's not much to do here! Why don't we want to modify passwords here??? Where would we do it instead?
+#         # See below
+#         # if we did have extra variables to update:
+#         # user.variable1 = variable1
+#         # user.variable2 = variable2
+#         # user.variable3 = variable3
+#         # Db.session.commit()
 
-        # Go back to user profile
-        return redirect(url_for(f'user/retrieve/{username}'))
+#         # Go back to user profile
+#         return redirect(url_for(f'user/retrieve/{username}'))
 
-    # Not authorized, go to login page
-    except KeyError as ke:
-        # show the error
-        flash(get_error(ke), 'danger')
+#     # Not authorized, go to login page
+#     except KeyError as ke:
+#         # show the error
+#         flash(get_error(ke), 'danger')
 
-        # redirect to login
-        return redirect(url_for('login'))
+#         # redirect to login
+#         return redirect(url_for('login'))
 
-    # Any other error
-    except Exception as e:
-        # show the error
-        flash(get_error(e), 'danger')
+#     # Any other error
+#     except Exception as e:
+#         # show the error
+#         flash(get_error(e), 'danger')
 
-        # redirect back to index page (or referrer)
-        # if we use this a lot, what could we do?
-        last_page = request.referrer if request.referrer else url_for('index')
-        return redirect(last_page)
+#         # redirect back to index page (or referrer)
+#         # if we use this a lot, what could we do?
+#         last_page = request.referrer if request.referrer else url_for('index')
+#         return redirect(last_page)
 
 
 @app.route('/user/form/update_password/<username>')
@@ -984,27 +985,3 @@ def graph_jason_process_stats():
 def chart_proctime():
     return render_template('plotly.html', graphJSON=graph_jason_process_stats())
  
-
-#
-# # Route for handling the login page logic
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     error = None
-#     if request.method == 'POST':
-#         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-#             error = 'Invalid Credentials. Please try again.'
-#         else:
-#             return redirect(url_for('home'))
-#     return render_template('login.html', error=error)
-#
-#
-# # Route for handling the create account page logic
-# @app.route('/create', methods=['GET', 'POST'])
-# def create():
-#     error = None
-#     if request.method == 'POST':
-#         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-#             error = 'Invalid Credentials. Please try again.'
-#         else:
-#             return redirect(url_for('home'))
-#     return render_template('create.html', error=error)
