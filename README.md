@@ -140,7 +140,10 @@ Shaoyi Li
 ### Milestone Final Tasks
 Xiaokang Zhang
 - Add login/signup features and flash alerting **COMPLETE**
-- Add logout alert and profile CRUD and vieing features
+- Create a new tab "community" allowing users to post messages **COMPLETE**
+- Set up database for user, blab **COMPLETE**
+- add protection features of "image upload", only open to loggedin users **COMPLETE**
+- Investigage image storage in database 
 
 Shaoyi Li
 - Add a script box to record the history of predicted letters between video start and stop **COMPLETE**
@@ -166,7 +169,9 @@ Shaoyi
 Xiaokang
 - image upload features
 - login/signup features
+- community features
 - help updating readme.md
+- help with logistics - meeting setup, progress tracking in github "issues"
 
 # References & Citations
 
