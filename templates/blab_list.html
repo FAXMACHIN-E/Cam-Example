@@ -24,6 +24,19 @@
 				<a href="/blab/dislike/{{blab.blab_id}}">&#x1F44E;</a>
 				{% endif %}
 			</td>
+			{% if user and blab.user.username == user.username %}
+			<td>
+				<a
+					style="text-decoration: none"
+					href="/user/delete/{{blab.blab_id}}"
+					alt="Delete the blab"
+					onclick="return confirm('Are you sure to delete the blab?')"
+				>
+					<i class="bi bi-trash-fill" style="color: rgb(160, 0, 0);"></i>
+				</a>
+			</td>
+			{% endif %}
+			
 		</tr>{% endfor %}
 	</tbody>
 </table>
