@@ -47,7 +47,6 @@ We plan to use the database to store information per account and use flask frame
 
 /app/static - Static files, etc.
 
-/framework/ - ???.
 
 The main components of the app are:
 
@@ -57,7 +56,7 @@ The main components of the app are:
 
 3. **Output** - This component is to show the output - letters in scripts (or edited video, to be investigated and confirmed) in desired format. 
 
-4. **Database**(optional) - This component stores information per user account, user ID & password, logging, uploaded files, etc. 
+4. **Database** - This component stores information per user account, user ID & password, logging, letters, blabs etc. 
 
 5. **Security** (to be investigated and confirmed) - This part contains user registration, authentication, etc. E.g., users need to provide valid email addresses for registration, and validation is needed if users want to upload files in the website.
 
@@ -140,7 +139,10 @@ Shaoyi Li
 ### Milestone Final Tasks
 Xiaokang Zhang
 - Add login/signup features and flash alerting **COMPLETE**
-- Add logout alert and profile CRUD and vieing features
+- Create a new tab "community" allowing users to post messages **COMPLETE**
+- Set up database for user, blab **COMPLETE**
+- add protection features of "image upload", only open to loggedin users **COMPLETE**
+- Investigage image storage in database 
 
 Shaoyi Li
 - Add a script box to record the history of predicted letters between video start and stop **COMPLETE**
@@ -166,7 +168,9 @@ Shaoyi
 Xiaokang
 - image upload features
 - login/signup features
+- community features
 - help updating readme.md
+- help with logistics - meeting setup, progress tracking in github "issues"
 
 # References & Citations
 
