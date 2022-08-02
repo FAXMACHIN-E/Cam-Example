@@ -47,7 +47,6 @@ We plan to use the database to store information per account and use flask frame
 
 /app/static - Static files, etc.
 
-/framework/ - ???.
 
 The main components of the app are:
 
@@ -57,7 +56,7 @@ The main components of the app are:
 
 3. **Output** - This component is to show the output - letters in scripts (or edited video, to be investigated and confirmed) in desired format. 
 
-4. **Database**(optional) - This component stores information per user account, user ID & password, logging, uploaded files, etc. 
+4. **Database** - This component stores information per user account, user ID & password, logging, letters, blabs etc. 
 
 5. **Security** (to be investigated and confirmed) - This part contains user registration, authentication, etc. E.g., users need to provide valid email addresses for registration, and validation is needed if users want to upload files in the website.
 
