@@ -275,7 +275,7 @@ def user_update(username):
 
 # Update User password
 # Q: How would we update the username??
-@app.route('/user/update_password/<username>', methods=['POST'])
+@app.route('/user/update_password/<username>')
 def user_update_pasword(username):
     try:
         # user must be logged in to view user profiles!
@@ -283,13 +283,34 @@ def user_update_pasword(username):
         if user == None:
             raise KeyError('You are not logged in!')
 
-        # sanitize username
-        username = check_string(request.form['username'], 'username')
+        form = UpdatePwForm()
+        return render_template('update_password.html', form = form, username=username)
+        # Not authorized, go to login page
+    except KeyError as ke:
+        # show the error
+        flash(get_error(ke), 'danger')
 
-        # we can only change our own passwords!
-        if (username != user.username):
-            raise PermissionError('Unauthorized action!')
+        # redirect to login
+        return redirect(url_for('login'))
 
+    # Any other error
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page (or referrer)
+        # if we use this a lot, what could we do?
+        last_page = request.referrer if request.referrer else url_for('index')
+        return redirect(last_page)
+
+
+@app.route('/user/update_password/submit/<username>', methods=['POST'])
+def user_update_pasword_submit(username):
+    try:
+        # user must be logged in to view user profiles!
+        user = logged_in_user()
+        if user == None:
+            raise KeyError('You are not logged in!')
         # sanitize & check that the passwords match
         password, verify = verify_password(request.form['password'], request.form['verify'], MIN_PASSWORD_LENGTH,
                                            MAX_PASSWORD_LENGTH)
@@ -304,7 +325,7 @@ def user_update_pasword(username):
         flash('Password successfully changed!', 'success')
 
         # return the blab as a json
-        return redirect(url_for(f'user/retrieve/{username}'))
+        return redirect(url_for('user_retrieve',username=username))
 
     # Not authorized, go to login page
     except KeyError as ke:

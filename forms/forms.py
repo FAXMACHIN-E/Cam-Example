@@ -20,3 +20,8 @@ class LoginForm(FlaskForm):
 class BlabForm(FlaskForm):
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Save Script')
+
+class UpdatePwForm(FlaskForm):
+    password = PasswordField('New Password', validators=[DataRequired()])
+    verify = PasswordField('Verify Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')
