@@ -15,6 +15,14 @@
   <li class="nav-item">
     <a href="/user/update_password/{{user.username}}" class="nav-link">Update Password</a>
   </li>
+  <li class="nav-item">
+    <a href="/user/delete/{{user.username}}" class="nav-link" style="color: rgb(160, 0, 0);"
+      alt="Delete the account"
+      onclick="return confirm('Are you sure to delete your account?')"
+      >
+      Delete Account
+    </a>
+  </li>
 </ul>
 {% endif %}
 
