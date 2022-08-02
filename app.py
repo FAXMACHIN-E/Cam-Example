@@ -15,7 +15,7 @@ from prediction_models.predict_img_lite import predict_landmark_letters
 
 from dotenv import load_dotenv
 from models.models import Db, User,File, Blab
-from forms.forms import SignupForm, LoginForm, BlabForm
+from forms.forms import SignupForm, LoginForm, BlabForm, UpdatePwForm
 from os import environ
 from passlib.hash import sha256_crypt
 
