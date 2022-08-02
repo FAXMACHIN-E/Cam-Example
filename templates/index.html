@@ -26,14 +26,14 @@
               in the middle of a presentation going through slides or 
               annotating on a whiteboard.
           </p>
-        <h4>Final Project Deliver (Now)</h4>
+        <h4>Final Project Delivery (Now)</h4>
         <p>
           We built an image recognization Web App to predict the English letters
           based on either uploaded images or video streams containing relevant ASL signs. 
         </p>
         <p>
           We have per account login available and the users will be able
-          to see history and other information of themselves.
+          to see and save their own scripts.
         </p>
         <br><br>
         <h2><li>Model Structure and Data Flow</li></h2>
@@ -68,8 +68,10 @@
           <div class="col-sm-5">
             <div class="card" style="border: 0;">
               <div class="card-body">
-                <h5 class="card-title">Web App Processing Flow -- Mostly on Server</h5>
-                <p class="card-text">This flow is used by image upload and traditional live video predictions</p>
+                <h5 class="card-title">Web App Processing Flow -- Fully on Server</h5>
+                <p class="card-text">This flow is used by image upload and fully-on-server live video predictions</p>
+                <p class="card-text"><h6>Pros:</h6> easy to inplement; client's browser doesn't need to wait and load</p>
+                <p class="card-text"><h6>Cons:</h6> more resources (RAM, CPU ...) occupied on server; POST request to server even when no hand is detected</p>
               </div>
               <img src="/static/img/asl_app_flow.jpg" alt="ASL Web App processing flow" >
             </div>
@@ -79,6 +81,8 @@
               <div class="card-body">
                 <h5 class="card-title">Web App Processing Flow -- Progressive</h5>
                 <p class="card-text">This flow is used by browser loaded live video predictions</p>
+                <p class="card-text"><h6>Pros:</h6> scalable -- not much resources needed on server; no POST request to server if no hand is detected</p>
+                <p class="card-text"><h6>Cons:</h6> user's browser needs to wait and load mediapipe locally; more programming in javascript</p>
               </div>
               <img src="/static/img/asl_app_flow_p.jpg" alt="ASL Web App processing flow, progressive" >
             </div>
