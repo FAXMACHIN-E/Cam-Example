@@ -320,7 +320,7 @@ def user_update_pasword(username):
 
 
 # HW: Add /user/delete
-# NOTE: This method is DANGEROUS! How could we make it less so?
+# NOTE: This method is DANGEROUS! Using Post Form is Safer... will do if we have time
 @app.route('/user/delete/<username>')
 def user_delete(username):
     try:
@@ -330,12 +330,12 @@ def user_delete(username):
             raise KeyError('You are not logged in!')
 
         # sanitize username
-        username = check_string(request.form['username'], 'username')
+        username = check_string(username, 'username')
 
         # we're the only ones who can delete our own user!
         if (username != user.username):
             raise PermissionError('Unauthorized action!')
-
+        
         # Delete all of the users' blabs
         # Lab7 HW: Use relationships to get these
         # See: https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
@@ -343,9 +343,13 @@ def user_delete(username):
         for file in files:
             Db.session.delete(file)
 
+        blabs = Blab.query.filter_by(author=user.uid).all()
+        for b in blabs:
+            Db.session.delete(b)
+
         # Delete the user
         Db.session.delete(user)
-
+        
         # Commit the changes
         Db.session.commit()
 
@@ -607,7 +611,7 @@ def blab_update(blab_id):
         return redirect(url_for('index_blab'))
 
 
-@app.route('/blab/delete/<blab_id>', methods=['POST'])
+@app.route('/blab/delete/<blab_id>')
 def blab_delete(blab_id):
     try:
         # user must be logged in to view user profiles!
