@@ -32,6 +32,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = environ.get('SECRET_KEY') # Make sure this is set in Heroku dashboard for this new app!
 Db.init_app(app)
 
+
+
+### check, verify, get_error, logged_users functions are from S14A 2022 Lab6
+
 # set some constants
 MAX_STRING_LENGTH   = 64
 MIN_PASSWORD_LENGTH = 8 # set something reasonable
@@ -131,6 +135,8 @@ def logged_in_user():
     else:
         return None
 
+
+### /user/xxx and /blab/xxx routes are customized from S14A 2022 Lab6
 
 # User CRUD
 # Create a new user /user/create
