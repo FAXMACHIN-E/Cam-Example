@@ -154,7 +154,7 @@ def user_create():
 
         # Message Flashing
         # https://flask.palletsprojects.com/en/2.0.x/patterns/flashing/#flashing-with-categories
-        flash('Congratulations, you are now a registered user!', 'success')
+        flash('Congratulations, you are now a registered user! Please login now.', 'success')
 
         # Redirect to login page
         return redirect(url_for('login'))
