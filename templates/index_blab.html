@@ -32,7 +32,7 @@
 
 <!-- BEGIN BLAB FORM -->
 
-   
+{% if user is defined %}
   <div class="dropdown">
     New ASL Blab:
     <button class="btn btn-white dropdown-toggle border-0" type="button" id="newblab" 
@@ -44,6 +44,11 @@
       <li><a class="dropdown-item" href="/mediapipe">Video: Browser Loaded</a></li>
     </ul>
   </div>
+{% else %}
+<p style="margin-top: 8px;color: gray;">
+  Wanna add your own ASL Blabs? You need to login in order to do so. 
+</p>
+{% endif %}
   
 
 
