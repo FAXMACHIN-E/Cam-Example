@@ -172,6 +172,15 @@ Xiaokang
 - help updating readme.md
 - help with logistics - meeting setup, progress tracking in github "issues"
 
+Yan Zhang
+- Heroku app setup
+- Web camera access
+- Investigated camera frames
+- User profile/password update features
+- Help cleaning up contents
+- Provided data for data visulization
+- Added a feature to show user's image uploading history (group decided not to keep).
+
 # References & Citations
 
 ​
