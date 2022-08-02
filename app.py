@@ -611,6 +611,8 @@ def blab_update(blab_id):
         return redirect(url_for('index_blab'))
 
 
+# blab delete is safer to be done in a POST form
+# will do if we have time
 @app.route('/blab/delete/<blab_id>')
 def blab_delete(blab_id):
     try:
