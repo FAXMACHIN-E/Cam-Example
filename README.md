@@ -140,7 +140,8 @@ Shaoyi Li
 Xiaokang Zhang
 - Add login/signup features and flash alerting **COMPLETE**
 - Create a new tab "community" allowing users to post messages **COMPLETE**
-- Set up database for user, blab **COMPLETE**
+- Set up database for user, blab (images) **COMPLETE**
+- Add feature displaying uploaded images (stored in database)**COMPLETE**
 - add protection features of "image upload", only open to loggedin users **COMPLETE**
 - Investigage image storage in database 
 
@@ -169,8 +170,18 @@ Xiaokang
 - image upload features
 - login/signup features
 - community features
+- uploaded image history features (within community)
 - help updating readme.md
 - help with logistics - meeting setup, progress tracking in github "issues"
+
+Yan Zhang
+- Heroku app setup
+- Web camera access
+- Investigated camera frames
+- User profile/password update features
+- Help cleaning up contents
+- Provided data for data visulization
+- Added a feature to show user's image uploading history (group decided not to keep).
 
 # References & Citations
 
