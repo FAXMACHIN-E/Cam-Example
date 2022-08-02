@@ -22,6 +22,7 @@ class BlabForm(FlaskForm):
     submit = SubmitField('Save Script')
 
 class UpdatePwForm(FlaskForm):
-    password = PasswordField('New Password', validators=[DataRequired()])
-    verify = PasswordField('Verify Password', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    old_password = PasswordField('Old password', validators=[DataRequired()])
+    password = PasswordField('New password', validators=[DataRequired()])
+    verify = PasswordField('Confirm new password', validators=[DataRequired()])
+    submit = SubmitField('Change password')

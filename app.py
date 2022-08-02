@@ -273,18 +273,21 @@ def user_update(username):
         return redirect(last_page)
 
 
-# Update User password
-# Q: How would we update the username??
-@app.route('/user/update_password/<username>')
-def user_update_pasword(username):
+@app.route('/user/form/update_password/<username>')
+def user_update_pasword_form(username):
     try:
         # user must be logged in to view user profiles!
         user = logged_in_user()
         if user == None:
             raise KeyError('You are not logged in!')
 
+        username = check_string(username, 'username')
+
+        if username != user.username:
+            raise PermissionError('You can only change the password of your own!')
+
         form = UpdatePwForm()
-        return render_template('update_password.html', form = form, username=username)
+        return render_template('update_password.html', form = form, username=username, user=user)
         # Not authorized, go to login page
     except KeyError as ke:
         # show the error
@@ -304,13 +307,34 @@ def user_update_pasword(username):
         return redirect(last_page)
 
 
-@app.route('/user/update_password/submit/<username>', methods=['POST'])
-def user_update_pasword_submit(username):
+# Update User password
+# Q: How would we update the username??
+@app.route('/user/update_password/<username>', methods=['POST'])
+def user_update_pasword(username):
     try:
         # user must be logged in to view user profiles!
         user = logged_in_user()
         if user == None:
             raise KeyError('You are not logged in!')
+
+        username = check_string(username, 'username')
+
+        if username != user.username:
+            raise PermissionError('You can only change the password of your own!')
+
+        old_password = check_password(request.form['old_password'], 'password')
+
+        # Control login validity
+        # we have some unhashed passwords in the database, so we may need to fix them
+        if user.password == old_password:
+            user.password = sha256_crypt.hash(old_password)  # password wasn't hashed so we need to do it now
+            Db.session.commit()  # save the password hash
+            user = User.query.filter_by(username=username).first()  # get the user back again
+
+        # check the password against the hashed version
+        if not sha256_crypt.verify(old_password, user.password):
+            raise PermissionError('Wrong old password!')
+
         # sanitize & check that the passwords match
         password, verify = verify_password(request.form['password'], request.form['verify'], MIN_PASSWORD_LENGTH,
                                            MAX_PASSWORD_LENGTH)
@@ -324,8 +348,8 @@ def user_update_pasword_submit(username):
         # flash a message to the user
         flash('Password successfully changed!', 'success')
 
-        # return the blab as a json
-        return redirect(url_for('user_retrieve',username=username))
+        # return the user profile
+        return redirect(f'/user/retrieve/{username}')
 
     # Not authorized, go to login page
     except KeyError as ke:
