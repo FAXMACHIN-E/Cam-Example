@@ -23,7 +23,7 @@
 
 {% block content %}
 
-{% if user is defined %}<h1>Hi, {{ user.username }}!</h1>
+{% if user %}<h1>Hi, {{ user.username }}!</h1>
 {% else %}<h1>Hi, guest!</h1>{% endif %}
 
 <!-- BEGIN BLABS -->
