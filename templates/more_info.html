@@ -1,0 +1,60 @@
+{% extends "layout.html" %} 
+
+{% block styles %} 
+{% endblock %} 
+
+{% block scripts %}
+<!-- <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script> -->
+
+{% endblock %} 
+
+{% block content %} 
+<header>
+    <div class="container"> 
+        <h1>More about This Project </h1>
+        <br>
+        <ul>
+          <li>
+            <h2>Open Items</h2>
+            <ul>
+              <li>Better model than random forest (CNN is probably the solution)</li>
+              <li>Prediction on words instead of just letters. The input will be image sequences instead of static images. We will need to allow video upload as well.</li>
+              <li>Collect and display uploaded images/videos from the users</li>
+              <li>Allow users to have their own customized model instances based on their uploaded images/videos with labels</li>
+              <li>Allow users to set scripts/images/videos to public/private (or even friends only)</li>
+              <li>Add more visualization elements based on dynamic data</li>
+              <li>Make the charts responsive</li>
+              <li>Web design -- prettify the pages</li>
+              <li>Make more user relevant info remembered by session object. i.e. probability threshold slider</li>
+              <li>Now we are using getUserMedia to capture camera frames -- not working on iOS. We may need other tools.</li>
+            </ul>
+          </li>
+          <li>
+            <h2>You can find <a href="/#modelflow" style="color: black;">App Flows</a> in About page</h2>
+          </li>
+          <li>
+            <h2>Mediapipe</h2>
+            <ul>
+              <li>Link here: <a href="https://google.github.io/mediapipe/solutions/hands.html">Google Mediapipe Hands</a></li>
+              <li>We use it to extract 21 3D coordinates per hand so the input shape to our self-trained model is always fixed</li>
+              <li>mediapipe has other libraries detecting more than hands -- this could be usefull for ASL words prediction</li>
+            </ul>
+          </li>
+          <li>
+            <h2>Model Calibration Datasets</h2>
+            <ul>
+              <li>Link to original copies here: 
+                <a href="https://public.roboflow.com/object-detection/american-sign-language-letters">
+                  American Sign Language Letters Dataset
+                </a>
+              </li>
+              <li>We apply data augmentation (rotation, shearing and flipping) and </li>
+              <li>split the ful datasets into: train, 1.3k; valid, 144; test, 144.</li>
+            </ul>
+          </li>
+
+        </ul>
+    </div>
+</header>
+
+{% endblock %}

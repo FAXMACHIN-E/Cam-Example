@@ -751,6 +751,12 @@ def index():
     user = logged_in_user()
     return render_template('index.html',user=user)
 
+
+@app.route('/moreinfo')
+def more_info():
+    user = logged_in_user()
+    return render_template('more_info.html',user=user)
+
 # for image upload and storage
 
 upload_folder = os.path.join('static','uploads')
