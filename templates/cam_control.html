@@ -101,6 +101,7 @@
 			</div>
  		{% endif %} 
 	{% endfor %}
+  {% if user %}
   <div class="btn-group me-2">
     <div class="form-submit">
       {{ form.submit( 
@@ -110,13 +111,18 @@
       ) }}
     </div>
     <div>
-      <button id="#btn-flipx" type="button", class="btn btn-rounded btn-ctrl btn-primary border-dark "
+      <button type="button", class="btn btn-rounded btn-ctrl btn-primary border-dark "
       onclick="document.getElementById('#sbox').toggleAttribute('readonly')" style='margin-top: 8px;'>
       <i class="bi bi-pencil-square"></i>
     </button>
     </div>
     
   </div>
+  {% else %}
+  <p style="margin-top: 8px;">
+    You need to login in order to save your script.
+  </p>
+  {% endif %}
 	
 </form>
 <br/>
