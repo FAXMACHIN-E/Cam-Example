@@ -68,6 +68,8 @@ The main components of the app are:
 
 2. **Processing** - Use mediapipe to parse the images either on the server or in users' browsers and make prediction on top of the parsed results using our own model. Colab notebook for model training: https://colab.research.google.com/drive/1Tuok_HFhSaD7UQCsoKiHDVf9lvWsp6kU?usp=sharing
 
+We also have non-progressive and progressive app data flow which is explained in the about page.
+
 3. **Output** - This component is to show the output - letters in scripts (or with edited video or images moving forward) in desired format. 
 
 4. **Database** - This component stores information per user account, user ID & password, logging, letters, blabs, images (not fully tested) etc. 
