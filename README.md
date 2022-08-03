@@ -41,11 +41,17 @@ We plan to use the database to store information per account and use flask frame
 
 ## Project Structure (to be updated as evolving)
 
-/app/ - The folder containing the app.
-/app/app.py - The main app entry point
-/app/templates - Where the templates live.
+/ - The folder containing the app.
+/app.py - The main app entry point
+/data - static data to setup DB or visualization
+/forms - WTForm instances
+/ml_research - how we arrived at the data model
+/models - DB models
+/prediction_models - pickled model and prediction wrappers
+/templates - html templates
+/static - Static css, js and img etc.
 
-/app/static - Static files, etc.
+/ Other files like Aptfile (heroku system lib installation), Profile, requirements.txt
 
 
 The main components of the app are:
@@ -54,7 +60,7 @@ The main components of the app are:
 
 2. **Processing** - This module contains tailored machine learning model to process reveived input and generate output, the processing time should be reasonable to achieve desired user experience. Colab notebook for model training: https://colab.research.google.com/drive/1Tuok_HFhSaD7UQCsoKiHDVf9lvWsp6kU?usp=sharing
 
-3. **Output** - This component is to show the output - letters in scripts (or edited video, to be investigated and confirmed) in desired format. 
+3. **Output** - This component is to show the output - letters in scripts (or with edited video or images moving forward) in desired format. 
 
 4. **Database** - This component stores information per user account, user ID & password, logging, letters, blabs etc. 
 
