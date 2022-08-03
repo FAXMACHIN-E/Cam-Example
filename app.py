@@ -1018,9 +1018,14 @@ def graph_jason_process_stats():
     """
     global graph_jason
     if graph_jason is None:
+        # Use csv files here since data is static
+        # Will move to DB if we are interacting with underlying data
         process_stats = pd.concat([
-            pd.read_csv('./data/video_pred.csv').assign(variation='Fully on Server'),
-            pd.read_csv('./data/mediapipe_pred.csv').assign(variation='Browser Loaded')
+            pd.read_csv(os.path.join(app.root_path, 'data', f'{_[0]}.csv')).assign(variation=_[1])
+            for _ in [
+                ('video_pred', 'Fully on Server'),
+                ('mediapipe_pred', 'Browser loaded')
+            ]
         ])
         fig = px.histogram(
             process_stats, x='process time (ms)', nbins=60, color='variation', 
