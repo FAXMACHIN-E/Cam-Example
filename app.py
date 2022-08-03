@@ -207,7 +207,7 @@ def user_retrieve(username, page):
                 title=f'@{profile_user.username}', pages=pages, limit=limit, route_name=f'/user/retrieve/{username}'
             )
         else:
-            redirect( f'/user/retrieve/{pages}/{limit}' )
+            return redirect( f'/user/retrieve/{pages}' )
 
     # Not logged in, go to login page
     except KeyError as ke:
