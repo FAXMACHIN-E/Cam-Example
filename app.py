@@ -190,7 +190,7 @@ def user_retrieve(username, page):
         # The logged in user can only see their own profile!
         profile_user = User.query.filter_by(username=username).first()
         if profile_user == None:
-            raise KeyError("User does not exist!")
+            raise KeyError(f"User '{username}' does not exist!")
         # if username != user.username:
         #     raise PermissionError( 'Unauthorized action!' )
 
@@ -206,8 +206,13 @@ def user_retrieve(username, page):
                 "profile.html", user=user, profile_user=profile_user, blabs=blabs.items,
                 title=f'@{profile_user.username}', pages=pages, limit=limit, route_name=f'/user/retrieve/{username}'
             )
-        else:
-            return redirect( f'/user/retrieve/{username}/{pages}' )
+        if pages == 0:
+            return render_template(
+                "profile.html", user=user, profile_user=profile_user, blabs=None,
+                title=f'@{profile_user.username}', 
+            )
+        
+        return redirect( f'/user/retrieve/{username}/{pages}' )
 
     # Not logged in, go to login page
     except KeyError as ke:
