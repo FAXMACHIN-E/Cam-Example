@@ -235,6 +235,7 @@ def user_retrieve(username, page):
         return redirect(url_for('index_blab'))
 
 
+# customised from HW4 solution
 def paginate_blab(blabs_q, page, limit=PAGE_LIMIT):
     # sanitize inputs!
     try:
@@ -478,7 +479,7 @@ def login():
             # Init & sanitize credentials from form request
             username = check_string(request.form['username'], 'username')
             password = check_password(request.form['password'], 'password')
-            # print(username, password)
+            
             # Get the user user by Db query
             user = User.query.filter_by(username=username).first()
             if user == None:
@@ -511,11 +512,21 @@ def login():
             # Get the logged in user
             user = logged_in_user()
 
+            if user is not None:
+                raise KeyError(f'Hi {user.username}, you need to logout before login!')
+                    
             # Init form
             form = LoginForm()
 
             # Show the login form
             return render_template('login.html', title='Login', form=form, user=user)
+
+    except KeyError as ke:
+        flash(get_error(ke), 'danger')
+
+         # redirect back to last page
+        last_page = request.referrer if request.referrer else url_for('index')
+        return redirect(last_page)
 
     # Any error
     except Exception as e:
@@ -549,11 +560,11 @@ def signup():
     return render_template('signup.html', title='Signup', form=form)
 
 
-@app.route('/user_list')
-def user_list():
-    users = User.query.all()
-    # print('#users:',len(users))
-    return render_template('user_list.html',users=users)
+# @app.route('/user_list')
+# def user_list():
+#     users = User.query.all()
+#     # print('#users:',len(users))
+#     return render_template('user_list.html',users=users)
 
 ###############################################
 #blab related from lab6
@@ -730,7 +741,8 @@ def blab_delete(blab_id):
         Db.session.commit()
 
         # go back to the index page
-        return redirect(url_for('index_blab'))
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
 
         # Any error
     except Exception as e:
@@ -738,7 +750,8 @@ def blab_delete(blab_id):
         flash(get_error(e), 'danger')
 
         # redirect back to index page
-        return redirect(url_for('index_blab'))
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
 
 
 @app.route('/blab/like/<blab_id>')
@@ -778,8 +791,8 @@ def like_blab(blab_id):
         flash(get_error(e), 'danger')
 
         # redirect back to index page
-        return redirect(url_for('index_blab'))
-
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
 
 @app.route('/blab/dislike/<blab_id>')
 def dislike_blab(blab_id):
@@ -818,7 +831,8 @@ def dislike_blab(blab_id):
         flash(get_error(e), 'danger')
 
         # redirect back to index page
-        return redirect(url_for('index_blab'))
+        last_page = request.referrer if request.referrer else url_for('index_blab')
+        return redirect(last_page)
 
 
 ###############################################
@@ -931,7 +945,9 @@ def upload_image():
         )
     except KeyError as ke:
         flash( get_error(ke),'danger')
-        return redirect(url_for('login'))
+
+        last_page = request.referrer if request.referrer else url_for('index')
+        return redirect(last_page)
     except Exception as e:
         # show the error
         flash(get_error(e), 'danger')
@@ -1021,5 +1037,17 @@ def graph_jason_process_stats():
 
 @app.route('/chart/proctime')
 def chart_proctime():
-    return render_template('plotly.html', graphJSON=graph_jason_process_stats())
+    try:
+        graph_jason = graph_jason_process_stats()
+    
+        return render_template('plotly.html', graphJSON=graph_jason)
+    except Exception as e:
+        # show the error
+        flash(get_error(e), 'danger')
+
+        # redirect back to index page (or referrer)
+        # if we use this a lot, what could we do?
+        last_page = request.referrer if request.referrer else url_for('index')
+        return redirect(last_page)
+
  

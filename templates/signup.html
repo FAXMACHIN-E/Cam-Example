@@ -9,7 +9,7 @@
 {% block content %}
 
 <h1>Signup form</h1>
-
+<!-- customized from lab6 -->
 <form class="form needs-validation" method="POST" action="/user/create">
 {{ form.hidden_tag() }} 
 {% for field in form %} {% if field.id != 'submit' and field.id != 'csrf_token' %}
