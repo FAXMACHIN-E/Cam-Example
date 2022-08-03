@@ -588,8 +588,12 @@ def index_blab(page):
     blabs, pages, limit = paginate_blab(blabs_q, page, limit)
 
     route_name = '/index_blab'
+    if pages == 0:
+        return render_template(
+            'index_blab.html', title='Blab Home', user=user
+        ) 
     if not isinstance(pages, dict):
-        redirect( f'{route_name}/{pages}' )
+        return redirect( f'{route_name}/{pages}' )
     
     return render_template(
         'index_blab.html', title='Blab Home', user=user,
