@@ -179,7 +179,7 @@ Shaoyi
 - ML model research, training, prediction
 - Video streaming (2 options) 
 - Javascript features
-- Add new web elements for complete functionalities
+- Add new web elements for complete functionalities (tuning slider, script box, flip button, play button...)
 - Add video interpreted scripts to blabs
 - Pagination
 - Delete function for both users and blabs 
