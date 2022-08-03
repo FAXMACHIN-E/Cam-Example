@@ -173,7 +173,7 @@ Xiaokang
 - uploaded image history features (within community)
 - setup databse - user, blab (iamges)
 - loggin user function protection (upload image and community)
-- help updating readme.md
+- help updating readme.md, testing, etc.
 - help with logistics - meeting setup, progress tracking in github "issues"
 
 Yan Zhang
