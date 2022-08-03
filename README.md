@@ -42,13 +42,21 @@ We plan to use the database to store information per account and use flask frame
 ## Project Structure (to be updated as evolving)
 
 / - The folder containing the app.
+
 /app.py - The main app entry point
+
 /data - static data to setup DB or visualization
+
 /forms - WTForm instances
+
 /ml_research - how we arrived at the data model
+
 /models - DB models
+
 /prediction_models - pickled model and prediction wrappers
+
 /templates - html templates
+
 /static - Static css, js and img etc.
 
 / Other files like Aptfile (heroku system lib installation), Profile, requirements.txt
@@ -56,17 +64,17 @@ We plan to use the database to store information per account and use flask frame
 
 The main components of the app are:
 
-1. **Input** - This component is about module to handle input - image/video uploaded by users, or content from web camera stream directly. It will also check compatibility - whether the input is the right type within the proper size range. 
+1. **Input** - Uploaded image and video streaming from web camera. Camera currently isn't working on iOS (iPhone).
 
-2. **Processing** - This module contains tailored machine learning model to process reveived input and generate output, the processing time should be reasonable to achieve desired user experience. Colab notebook for model training: https://colab.research.google.com/drive/1Tuok_HFhSaD7UQCsoKiHDVf9lvWsp6kU?usp=sharing
+2. **Processing** - Use mediapipe to parse the images either on the server or in users' browsers and make prediction on top of the parsed results using our own model. Colab notebook for model training: https://colab.research.google.com/drive/1Tuok_HFhSaD7UQCsoKiHDVf9lvWsp6kU?usp=sharing
 
 3. **Output** - This component is to show the output - letters in scripts (or with edited video or images moving forward) in desired format. 
 
-4. **Database** - This component stores information per user account, user ID & password, logging, letters, blabs etc. 
+4. **Database** - This component stores information per user account, user ID & password, logging, letters, blabs, images (not fully tested) etc. 
 
 5. **Security** (to be investigated and confirmed) - This part contains user registration, authentication, etc. E.g., users need to provide valid email addresses for registration, and validation is needed if users want to upload files in the website.
 
-6. **Visualization** (to be confirmed later)- This part is to describe models in a visual way, and illustrate key user activities in the webside (frequency, etc.)  
+6. **Visualization** only performance metrics histogram on static data for now but ideally we'll have dashboard showing user's historical ASL metrics.
 
 
 ## Key Packages
