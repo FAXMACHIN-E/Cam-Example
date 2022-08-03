@@ -214,3 +214,5 @@ Yan Zhang
 ​
 Lee, D. (2020, October 15). Using computer vision in helping the deaf and hard of hearing communities with yolov5. Medium. Retrieved July 4, 2022, from https://daviddaeshinlee.medium.com/using-computer-vision-in-helping-the-deaf-and-hard-of-hearing-communities-with-yolov5-7d764c2eb614 
 
+​
+We also referenced code from elsewhere. The only place we copy/paste the code is from lab4 and lab6 in S14A 2022. The other places the code are already highly customized
