@@ -149,6 +149,12 @@ Shaoyi Li
 - Add a script box to record the history of predicted letters between video start and stop **COMPLETE**
 - Add a slider to tune the probability threshold for script recording **COMPLETE**
 - Add tooltip for flipcam button and the threshold slider **COMPLETE**
+- Add delete for user and blabs **COMPLETE**
+- Add pagination for blabs **COMPLETE**
+- ......
+- everything else
+- ......
+- Testing and fix bugs **COMPLETE**
  
 
 
@@ -157,11 +163,15 @@ Shaoyi Li
 Shaoyi
 - Training/validation/testing datasets
 - ML model research, training, prediction
-- Video streaming (2 options)
+- Video streaming (2 options) 
 - Javascript features
 - Add new web elements for complete functionalities
+- Add video interpreted scripts to blabs
+- Pagination
+- Delete function for both users and blabs 
 - Fix Heroku issues (deployment, memory and database)
-- Testing, bug fixing and code cleaning ups for the whole project.
+- Integrate different components from other members to the web app. 
+- Testing, bug fixing, code REWOARKing, code REDESIGNing and code cleaning ups for the whole project.
 - MVP and Final presentation
 - Track the project progress and arrange meetings
 - Keep readme.md up-to-date
