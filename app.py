@@ -513,7 +513,7 @@ def login():
             user = logged_in_user()
 
             if user is not None:
-                raise KeyError(f'Hi {user.username}, you need to logout before login!')
+                raise KeyError(f'Hi {user.username}, you need to logout before login as another user!')
                     
             # Init form
             form = LoginForm()
@@ -555,9 +555,10 @@ def logout():
 @app.route('/user/form/signup')
 def signup():
     # Init form
+    user = logged_in_user()
     form = SignupForm()
 
-    return render_template('signup.html', title='Signup', form=form)
+    return render_template('signup.html', title='Signup', form=form, user=user)
 
 
 # @app.route('/user_list')
@@ -1043,9 +1044,10 @@ def graph_jason_process_stats():
 @app.route('/chart/proctime')
 def chart_proctime():
     try:
+        user = logged_in_user()
         graph_jason = graph_jason_process_stats()
     
-        return render_template('plotly.html', graphJSON=graph_jason)
+        return render_template('plotly.html', graphJSON=graph_jason, user=user)
     except Exception as e:
         # show the error
         flash(get_error(e), 'danger')
