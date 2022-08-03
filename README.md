@@ -38,6 +38,7 @@ We'll provide web interface for users to upload or connect with the PC's camera.
 
 We plan to use the database to store information per account and use flask framework for the web interface.
 
+Most components of the App is progressive. Will fix the remainder in the future.
 
 ## Project Structure (to be updated as evolving)
 
