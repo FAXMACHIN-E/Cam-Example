@@ -184,7 +184,7 @@ Shaoyi
 - Javascript features
 - Add new web elements for complete functionalities (tuning slider, script box, flip button, play button...)
 - Add video interpreted scripts to blabs
-- Pagination
+- Pagination for two different routes
 - Delete function for both users and blabs 
 - Fix Heroku issues (deployment, memory and database)
 - Integrate different components from other members to the web app. 
