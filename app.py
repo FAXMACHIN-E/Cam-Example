@@ -25,7 +25,7 @@ import pandas as pd
 import json
 
 load_dotenv('.env')
-
+#
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL').replace('postgres://', 'postgresql://') # this is to solve a bug in heroku
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
